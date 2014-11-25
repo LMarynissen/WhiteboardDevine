@@ -1,0 +1,108 @@
+:Data ophalen uit database
+	-data ophalen
+	-data in array steken
+
+:loginlogout
+	-registreren
+		-roles
+	-login
+	-logout
+
+:Project aanmaken
+	-Titel invoeren
+	-Description toevoegen
+	-Project toevoegen
+
+:Projecten deleten
+	-delete-knop toevoegen
+	-deleten uit database
+
+:Items ophalen
+	-kleur ophalen
+	-positie ophalen
+	-titel ophalen
+	-desc ophalen
+	-thumbnails ophalen+linken
+	-delete-knop toevoegen
+	-"gemaakt door"
+	-datum
+
+
+:Items toevoegen
+	-titel toevoegen
+	-description toevoegen
+
+	-resizen afbeeldingen
+	-groot doen worden
+
+	-icoon maken video
+	-video groot doen worden maken
+
+	-kleur post-it (via colour-picker)
+
+	-in database steken
+
+
+:Items verslepen
+	-x/y-waarden aanpassen
+	-positie in layer aanpassen
+	-nieuwe positie in database
+
+
+:Items deleten
+	-delete
+	-delete van database
+
+:Inviten
+	-email/accountnaam ingeven
+	-kijken of persoon bestaat in db
+	-toevoegen aan project
+
+:Mensen deleten
+	-
+
+:Design
+
+
+
+DATABASE :D
+
+users
+-id
+-email
+-pw
+-role
+-name
+
+
+projects
+-id
+-title
+-desc
+-user_id maker
+
+
+items
+-id
+-project_id
+-title
+-desc
+-contentlink
+-extension
+-positionX
+-positionY
+-datum
+-user_id
+
+
+
+
+(
+:clear all
+:Inviten bij aanmaken project
+:Lettertype
+:Items aanpassen
+:log-list
+:mooie kleurvakjes
+:sparkles
+)
