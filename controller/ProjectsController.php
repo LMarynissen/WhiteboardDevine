@@ -3,7 +3,6 @@
 require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
 require_once WWW_ROOT . 'dao' . DS . 'ProjectDAO.php';
 require_once WWW_ROOT . 'dao' . DS . 'UserDAO.php';
-
 require_once WWW_ROOT . 'php-image-resize' . DS . 'ImageResize.php';
 
 class ProjectsController extends Controller {
@@ -44,6 +43,21 @@ class ProjectsController extends Controller {
 		$errors = array();
 		$size = array();
 
+		if(!empty($_POST)){
+
+			$title = $_POST["title"];
+			$description = $_POST["description"];
+
+			if(empty($errors)){
+					$this->projectDAO->insert(array(
+						"user_id"=>$_SESSION["user"]["id"],
+						"title"=>$title,
+						"description"=>$description
+					));
+					$_SESSION["info"] = "Project created successfully";
+					$this->redirect("index.php?page=detail&id=");
+			}
+		}	
 
 		if(!empty($errors)){
 			$_SESSION["error"] = "the project could not be created";
