@@ -41,6 +41,11 @@ body{
 
 /*------------ NAVIGATIE -------------- */
 
+.container{
+	width: 900px;
+	margin: 0 auto;
+}
+
 .schreef{
   font-family: 'lavanderia';
   color: #139b8b;
@@ -59,8 +64,14 @@ nav ul .schreef a:visited{
   color: #139b8b;
 }
 
+nav ul .schreef {
+	margin-top: 10px;
+}
+
 nav ul .sans {
 	float: right;
+	margin-top: -30px;
+
 }
 
 nav ul li{
@@ -76,6 +87,7 @@ nav ul .sans a:visited{
   color: #139b8b;
 }
 
+
 .projectWindow{
     width:944px;
     height:536px;
@@ -89,3 +101,23 @@ nav ul .sans a:visited{
     height:150px;
     background-color: blue;
 }
+
+.line{
+	width: 100%;
+	margin-left: 84px;
+	margin-top: -30px;
+	background-color: #909090;
+	height: 1px;
+
+}
+
+#content{
+	width: 700px;
+	padding-top: 50px;
+	margin: 0 auto;
+}
+
+#content > header > h1{
+	font-size: 3em;
+}
+
