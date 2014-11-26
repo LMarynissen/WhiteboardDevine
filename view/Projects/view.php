@@ -4,7 +4,12 @@
   <h3><?php echo $project["description"]; ?></h3>
 
   <div class="projectWindow">
-  		
+  	<div class="stickyNote">
+  		<h3 class="stickyTitle"></h3>
+  		<div class="stickyContent"></div>
+
+		<button class="stickyDeleteButton"></button>
+  	</div>	
   </div>
 
 </section>

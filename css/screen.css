@@ -49,7 +49,6 @@ body{
 .sans{
 	font-family: 'code';
 	color: #139b8b;
-
 }
 
 nav ul .schreef a{
@@ -75,4 +74,18 @@ nav ul .sans a{
 
 nav ul .sans a:visited{
   color: #139b8b;
+}
+
+.projectWindow{
+    width:944px;
+    height:536px;
+    background-image: url('../images/test.jpg');
+    margin-left:100px;
+    margin-top:50px;
+}
+
+.stickyNote{
+    width:200px;
+    height:150px;
+    background-color: blue;
 }

@@ -62,7 +62,6 @@ class ProjectsController extends Controller {
 		if(!empty($errors)){
 			$_SESSION["error"] = "the project could not be created";
 		}
-
 		$this->set('errors', $errors);
 	}
 }
