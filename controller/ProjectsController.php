@@ -41,7 +41,6 @@ class ProjectsController extends Controller {
 
 	public function add(){
 		$errors = array();
-		$size = array();
 
 		if(!empty($_POST)){
 
@@ -61,6 +60,21 @@ class ProjectsController extends Controller {
 
 		if(!empty($errors)){
 			$_SESSION["error"] = "the project could not be created";
+		}
+		$this->set('errors', $errors);
+	}
+
+	public function delete(){
+		$errors = array();
+
+		if(empty($errors)){
+				$this->projectDAO->delete($_GET["id"]);
+				$_SESSION["info"] = "Project deleted successfully";
+				$this->redirect("index.php");
+		}
+
+		if(!empty($errors)){
+			$_SESSION["error"] = "the project could not be deleted";
 		}
 		$this->set('errors', $errors);
 	}

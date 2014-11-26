@@ -34,6 +34,21 @@ class ProjectDAO extends DAO {
 		return false;
 	}
 
+	public function delete($id) {
+
+			//STICKYNOTES WORDEN NOG NIET VERWIJDERD ZO WAJOW
+			$sql = " DELETE FROM projects
+					 WHERE id = :id";
+	        $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':id', $id);
+			if($stmt->execute()) {
+
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+		
+		return false;
+	}
 
 	public function getValidationErrors($data) {
 		$errors = array();

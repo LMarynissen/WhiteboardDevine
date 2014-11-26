@@ -1,6 +1,19 @@
 <?php
 session_start();
 
+//DOM TOOLTJE OM PHP INFO NAAR CONSOLE TE PUSHEN
+//DELETEN VOOR HET INDIENEN
+function debug_to_console( $data ) {
+
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+    echo $output;
+}
+
+
 define('DS', DIRECTORY_SEPARATOR);
 define('WWW_ROOT', __DIR__ . DS);
 
@@ -16,6 +29,10 @@ $routes = array(
     'add' => array(
     'controller' => 'Projects', 
     'action' => 'add'
+    ),
+    'delete' => array(
+    'controller' => 'Projects', 
+    'action' => 'delete'
     ),
     'register' => array(
         'controller' => 'Users',
