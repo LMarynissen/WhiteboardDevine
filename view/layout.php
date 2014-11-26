@@ -10,11 +10,11 @@
         <nav role="navigation">
             <div class="container">
                 <ul>
-                    <li><a href="index.php">Overview</a></li>
+                    <li class= "schreef"><a class href="index.php">Whiteboard</a></li>
 
                     <?php if (empty($_SESSION["user"])) { ?>
-                    <li><a href="index.php?page=login">login</a></li>
-                    <li><a href="index.php?page=register">Register</a></li>
+                    <li class ="sans" ><a href="index.php?page=login">login</a></li>
+                    <li class = "sans" ><a href="index.php?page=register">Register</a></li>
                     <?php } else { ?>
 
                     <p>Signed in as <?php echo $_SESSION['user']['email'];?> - <a href="index.php?page=logout">Logout</a></p>

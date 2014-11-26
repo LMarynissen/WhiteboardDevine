@@ -1,0 +1,78 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+body{
+    font-size: 62.5%;
+    width: 100%;
+    font-family: Helvetica, sans-serif;
+}
+
+/*------------ FONTS -------------- */
+@font-face {
+    font-family: 'lavanderia';
+    src: url('lavanderia_regular-webfont-webfont.eot');
+    src: url('lavanderia_regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('lavanderia_regular-webfont-webfont.woff2') format('woff2'),
+         url('lavanderia_regular-webfont-webfont.woff') format('woff'),
+         url('lavanderia_regular-webfont-webfont.ttf') format('truetype'),
+         url('lavanderia_regular-webfont-webfont.svg#lavanderiaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'code';
+    src: url('code_light-webfont.eot');
+    src: url('code_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('code_light-webfont.woff2') format('woff2'),
+         url('code_light-webfont.woff') format('woff'),
+         url('code_light-webfont.ttf') format('truetype'),
+         url('code_light-webfont.svg#code_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/*------------ NAVIGATIE -------------- */
+
+.schreef{
+  font-family: 'lavanderia';
+  color: #139b8b;
+}
+
+.sans{
+	font-family: 'code';
+	color: #139b8b;
+
+}
+
+nav ul .schreef a{
+	font-size: 7.2em;
+}
+
+nav ul .schreef a:visited{
+  color: #139b8b;
+}
+
+nav ul .sans {
+	float: right;
+}
+
+nav ul li{
+list-style: none;
+}
+
+nav ul .sans a{
+	font-size: 3em;
+	margin-right: 20px;
+}
+
+nav ul .sans a:visited{
+  color: #139b8b;
+}
