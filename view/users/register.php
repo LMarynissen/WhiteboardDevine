@@ -23,7 +23,7 @@
             </div>
         </div>
         <div>
-            <div><input type="submit" value="register"></div>
+            <div><input type="submit" value="Registreren"></div>
         </div>
     </form>
 </section>

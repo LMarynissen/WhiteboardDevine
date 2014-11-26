@@ -18,7 +18,6 @@ body{
     font-family: 'lavanderia';
     src: url('lavanderia_regular-webfont-webfont.eot');
     src: url('lavanderia_regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
-         url('lavanderia_regular-webfont-webfont.woff2') format('woff2'),
          url('lavanderia_regular-webfont-webfont.woff') format('woff'),
          url('lavanderia_regular-webfont-webfont.ttf') format('truetype'),
          url('lavanderia_regular-webfont-webfont.svg#lavanderiaregular') format('svg');
@@ -30,7 +29,6 @@ body{
     font-family: 'code';
     src: url('code_light-webfont.eot');
     src: url('code_light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('code_light-webfont.woff2') format('woff2'),
          url('code_light-webfont.woff') format('woff'),
          url('code_light-webfont.ttf') format('truetype'),
          url('code_light-webfont.svg#code_lightregular') format('svg');
@@ -71,7 +69,6 @@ nav ul .schreef {
 nav ul .sans {
 	float: right;
 	margin-top: -30px;
-
 }
 
 nav ul li{
@@ -86,6 +83,30 @@ nav ul .sans a{
 nav ul .sans a:visited{
   color: #139b8b;
 }
+
+nav ul p{
+	margin-top: -30px;
+	font-size: 3em;
+	margin-right: 20px;
+	float: right;
+}
+
+
+
+nav ul p > a{
+	font-size: 1em;
+}
+
+.line{
+	width: 100%;
+	margin-left: 84px;
+	margin-top: -30px;
+	background-color: #909090;
+	height: 1px;
+
+}
+
+/*------------ WHITEBOARD PROJECT -------------- */
 
 
 .projectWindow{
@@ -102,22 +123,63 @@ nav ul .sans a:visited{
     background-color: blue;
 }
 
-.line{
-	width: 100%;
-	margin-left: 84px;
-	margin-top: -30px;
-	background-color: #909090;
-	height: 1px;
 
-}
+
+/*------------ REGISTER -------------- */
+
 
 #content{
 	width: 700px;
 	padding-top: 50px;
 	margin: 0 auto;
+	text-align: center;
 }
 
 #content > header > h1{
 	font-size: 3em;
+}
+
+#content > form label{
+	margin-top: 10px;
+	margin-bottom: 2px;
+	display: inline-block;
+}
+
+#content > form input{
+	width: 300px;
+}
+
+#content > form input[type=submit]{
+	background-color: #139b8b;
+	margin-top: 10px;
+	color: white;
+	width: 150px;
+	height: 20px;
+}
+
+/*------------ ERROR /SUCCES-------------- */
+
+.error-message{
+	color: red;
+}
+
+.alert{
+	width: 500px;
+	font-size: 2em;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.alert-danger{
+	color: red;
+	border: 1px solid red;
+
+}
+
+.alert-success{
+	color: #3fad75;
+	border: 1px solid #3fad75 ;
+
 }
 

@@ -17,7 +17,7 @@
                     <li class = "sans" ><a href="index.php?page=register">Register</a></li>
                     <?php } else { ?>
 
-                    <p>Signed in as <?php echo $_SESSION['user']['email'];?> - <a href="index.php?page=logout">Logout</a></p>
+                    <p class="sans">Signed in as <?php echo $_SESSION['user']['email'];?> - <a href="index.php?page=logout">Logout</a></p>
                     <?php } ?>
                     </ul>
             </div>
