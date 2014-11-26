@@ -1,5 +1,5 @@
 <section id="content">
-    <header><h1>Register</h1></header>
+    <header><h1 class= "sans" >Registreren</h1></header>
     <form action="index.php?page=register" method="post" >
         <div class="<?php if(!empty($errors['email'])) echo ' has-error'; ?>">
             <label for="registerEmail">Email:</label>

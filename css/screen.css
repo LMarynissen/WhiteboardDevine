@@ -41,6 +41,11 @@ body{
 
 /*------------ NAVIGATIE -------------- */
 
+.container{
+	width: 900px;
+	margin: 0 auto;
+}
+
 .schreef{
   font-family: 'lavanderia';
   color: #139b8b;
@@ -60,8 +65,14 @@ nav ul .schreef a:visited{
   color: #139b8b;
 }
 
+nav ul .schreef {
+	margin-top: 10px;
+}
+
 nav ul .sans {
 	float: right;
+	margin-top: -30px;
+
 }
 
 nav ul li{
@@ -76,3 +87,24 @@ nav ul .sans a{
 nav ul .sans a:visited{
   color: #139b8b;
 }
+
+.line{
+	width: 100%;
+	margin-left: 84px;
+	margin-top: -30px;
+	background-color: #909090;
+	height: 1px;
+
+}
+
+/*------------ REGISTRATIE -------------- */
+#content{
+	width: 700px;
+	padding-top: 50px;
+	margin: 0 auto;
+}
+
+#content > header > h1{
+	font-size: 3em;
+}
+
