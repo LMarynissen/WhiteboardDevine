@@ -24,19 +24,24 @@ class ProjectsController extends Controller {
 	public function view(){
 
 		$project = false;
+		$items = false;
+
 		if(!empty($_GET["id"])){
 			$project = $this->projectDAO->selectById($_GET["id"]);
+			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
+			
 			if(empty($project)){
 				$this->redirect("index.php");
 			}
 			$this->set("project",$project);
+			$this->set("items",$items);
 		} else {
 			$this->redirect("index.php");
 		}
 		if(empty($project)){
 			$this->redirect("index.php");
 		}
-		$this->set("project",$project);
+		//$this->set("project",$project);
 	}
 
 	public function add(){

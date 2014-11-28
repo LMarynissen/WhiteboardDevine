@@ -118,9 +118,19 @@ nav ul p > a{
 }
 
 .stickyNote{
+	/* Make DIV-object relative to parent, but not to siblings*/
+	position:absolute;
+	display: block;
     width:200px;
     height:150px;
     background-color: blue;
+    color: white;
+}
+
+.stickyContent{
+    width:180px;
+    height:120px;
+    margin: 0 auto;
 }
 
 

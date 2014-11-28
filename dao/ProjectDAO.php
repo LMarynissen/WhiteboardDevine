@@ -10,6 +10,14 @@ class ProjectDAO extends DAO {
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+	public function selectItemsByProjectId($id) {
+		$sql = "SELECT * FROM `items` WHERE `project_id` = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function selectByUser($user_id) {
 		$sql = "SELECT * FROM `projects` WHERE `user_id` = :user_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -42,7 +50,15 @@ class ProjectDAO extends DAO {
 	        $stmt = $this->pdo->prepare($sql);
 	        $stmt->bindValue(':id', $id);
 			if($stmt->execute()) {
-
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+	
+			$sql2 = " DELETE FROM items
+					 WHERE project_id = :project_id";
+	        $stmt2 = $this->pdo->prepare($sql2);
+	        $stmt2->bindValue(':project_id', $id);
+			if($stmt2->execute()) {
 			//	$insertedId = $this->pdo->lastInsertId();
 			//	return $this->selectById($insertedId);
 			}
