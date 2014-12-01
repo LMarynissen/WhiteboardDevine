@@ -36,12 +36,16 @@
         var descriptionEl = document.createElement("h4");       
         var t = document.createTextNode(description);       
         descriptionEl.appendChild(t);                         
-        this.el.appendChild(descriptionEl);    
+        this.el.appendChild(descriptionEl);
 
+        var aThumbnail = document.createElement("a");   
+        aThumbnail.classList.add('stickyContent');
+        aThumbnail.setAttribute('href',"uploads/" + contentlink + "." + extension);
         var thumbnail = document.createElement("div");   
         thumbnail.classList.add('stickyContent');
-        thumbnail.style.backgroundImage = 'url(images/' + contentlink + '_th.' + extension + ')';
-        this.el.appendChild(thumbnail);
+        thumbnail.style.backgroundImage = 'url(uploads/' + contentlink + '_th.' + extension + ')';
+        aThumbnail.appendChild(thumbnail);
+        this.el.appendChild(aThumbnail);
 
         var datumEl = document.createElement("p");   
         datumEl.classList.add('stickyDate');    
@@ -53,7 +57,13 @@
         creatorEl.classList.add('stickyCreator');    
         var t = document.createTextNode("door " + user_id);       
         creatorEl.appendChild(t);                     
-        this.el.appendChild(creatorEl);            
+        this.el.appendChild(creatorEl);
+
+        var deleteEl = document.createElement("button");   
+        deleteEl.classList.add('stickyDeleteButton');    
+        var t = document.createTextNode("delete");       
+        deleteEl.appendChild(t);                     
+        this.el.appendChild(deleteEl);              
 
         this.el.style.left = posX + "px";
         this.el.style.top = posY + "px";

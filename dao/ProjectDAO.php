@@ -42,6 +42,30 @@ class ProjectDAO extends DAO {
 		return false;
 	}
 
+	public function insertItem($data) {
+		$errors = $this->getValidationErrors($data);
+		if(empty($errors)) {
+			$sql = "INSERT INTO `items` (`user_id`, `title`, `description`, `project_id`, `contentlink`, `extension`, `posX`, `posY`, `datum`, `Color`) 
+								 VALUES (:user_id, :title, :description, :project_id, :contentlink, :extension, :posX, :posY, :datum, :Color)";
+	        $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':user_id', $data['user_id']);
+	        $stmt->bindValue(':title', $data['title']);
+	        $stmt->bindValue(':description', $data['description']);
+	        $stmt->bindValue(':project_id', $data['project_id']);
+	        $stmt->bindValue(':contentlink', $data['contentlink']);
+	        $stmt->bindValue(':extension', $data['extension']);
+	        $stmt->bindValue(':posX', $data['posX']);
+	        $stmt->bindValue(':posY', $data['posY']);
+	        $stmt->bindValue(':datum', $data['datum']);
+	        $stmt->bindValue(':Color', $data['Color']);
+			if($stmt->execute()) {
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+		}
+		return false;
+	}
+
 	public function delete($id) {
 
 			//STICKYNOTES WORDEN NOG NIET VERWIJDERD ZO WAJOW

@@ -69,6 +69,65 @@ class ProjectsController extends Controller {
 		$this->set('errors', $errors);
 	}
 
+	public function addItem(){
+		$errors = array();
+		$size = array();
+
+		if(!empty($_FILES["image"])){
+			if(!empty($_FILES["image"]["error"])){
+				$errors["image"] = "the image could not be uploaded";
+			}
+
+			if(empty($errors["image"])){
+				$size = getimagesize($_FILES["image"]["tmp_name"]);
+				if(empty($size)){
+					$errors["image"] = "please insert an image";
+				}
+			}
+			if(empty($errors["image"])){
+				if($size[0] < 400 || $size[1] < 400){
+					$errors["image"] = "image should be at least 400x400";
+				}
+			}
+			if(empty($errors["image"])){
+				$project_id = $_GET["id"];
+				$title = $_POST["title"];
+				$description = $_POST["description"];
+				$Color = $_POST["color"];
+				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["image"]["name"]);
+				$extension = explode($contentlink.".", $_FILES["image"]["name"])[1];
+				$this->projectDAO->insertItem(array(
+					"user_id"=>$_SESSION["user"]["id"],
+					"contentlink"=>$contentlink,
+					"extension"=>$extension,
+					"posX"=>100,
+					"posY"=>100,
+					"title"=>$title,
+					"description"=>$description,
+					"project_id"=>$_GET["id"],
+					"datum"=>date("Y-m-d h:i:s"),
+					"Color"=>$Color
+				));
+				$imageresize = new EventViva\ImageResize($_FILES["image"]["tmp_name"]);
+				$imageresize->resizeToHeight(600);
+				//$imageresize->crop(600,600);
+				$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
+				$imageresize->resizeToHeight(120);
+				$imageresize->crop(180,120);
+				$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);
+				$this->redirect("index.php?page=detail&id=".$_GET["id"]);
+				$_SESSION["info"] = "The sticky note was uploaded";
+			}
+
+		}
+		if(!empty($errors)){
+			$_SESSION["error"] = "the sticky note could not be uploaded";
+
+		}
+
+		$this->set('errors', $errors);
+	}
+
 	public function delete(){
 		$errors = array();
 

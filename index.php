@@ -27,12 +27,16 @@ $routes = array(
         'action' => 'view'
     ),
     'add' => array(
-    'controller' => 'Projects', 
-    'action' => 'add'
+        'controller' => 'Projects', 
+        'action' => 'add'
+    ),
+    'addItem' => array(
+        'controller' => 'Projects', 
+        'action' => 'addItem'
     ),
     'delete' => array(
-    'controller' => 'Projects', 
-    'action' => 'delete'
+        'controller' => 'Projects', 
+        'action' => 'delete'
     ),
     'register' => array(
         'controller' => 'Users',
