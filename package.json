@@ -1,11 +1,25 @@
 {
-  "name": "Deelexamen",
+  "name": "WhiteboardDevine",
   "version": "1.0.0",
-  "description": "Deelexamen",
-  "main": "index.js",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.8.10"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Eline lingier",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LMarynissen/WhiteboardDevine"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LMarynissen/WhiteboardDevine/issues"
+  },
+  "homepage": "https://github.com/LMarynissen/WhiteboardDevine"
 }

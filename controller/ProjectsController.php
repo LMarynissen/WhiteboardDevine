@@ -85,7 +85,7 @@ class ProjectsController extends Controller {
 				}
 			}
 			if(empty($errors["image"])){
-				if($size[0] < 400 || $size[1] < 400){
+				if($size[0] < 200 || $size[1] < 200){
 					$errors["image"] = "image should be at least 400x400";
 				}
 			}
