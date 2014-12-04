@@ -28,11 +28,12 @@
 		echo "<p>No stickies placed yet</p>";
     } ?>
 
-</section>
-
-<section>
-	<?php echo $project['id']; ?>
+  <section class="postitform">
 	<form action="index.php?page=addItem&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <header>
+          <h1>New sticky note</h1>
+        </header>
+
         <div class="form-group<?php if(!empty($errors['title'])) echo ' has-error'; ?>">
             <label for="addTitle">Title:</label>
             <div>
@@ -81,6 +82,7 @@
             <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Add sticky note" class="btn btn-default"></div>
         </div>
     </form>
+    </section>
 
 
 </section>

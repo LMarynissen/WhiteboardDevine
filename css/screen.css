@@ -112,7 +112,7 @@ nav ul p > a{
     width:944px;
     height:536px;
     background-image: url('../images/test.jpg');
-    margin-left:100px;
+    margin-left:-50px;
     margin-top:50px;
 }
 
@@ -140,6 +140,28 @@ nav ul p > a{
 .stickyCreator{
 	color: black;
 
+}
+
+.postitform{
+	float: right;
+	margin-top: 50px;
+	color: white;
+}
+
+.postitform  h1{
+	font-size: 2em;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+.postitform > form input[type=file]{
+	display: inline;
+
+}
+
+.postitform label[for=addTitle]{
+	margin-top: 10px;
+	
 }
 
 
