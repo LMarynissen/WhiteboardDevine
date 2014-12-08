@@ -103,6 +103,26 @@ class ProjectDAO extends DAO {
 		return false;
 	}
 
+	public function moveUpdate($data) {
+
+		$id = $data['id'];
+		$posX = $data['posX'];
+		$posY = $data['posY'];
+
+		$sql = " UPDATE items SET posX ='$posX', posY ='$posY'  WHERE id = $id";
+		
+		 $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':id', $id);
+			if($stmt->execute()) {
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+		
+		return false;
+	}
+
+
+
 	public function getValidationErrors($data) {
 		$errors = array();
 		if(empty($data['user_id'])) {

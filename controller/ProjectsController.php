@@ -157,4 +157,30 @@ class ProjectsController extends Controller {
 		}
 		$this->set('errors', $errors);
 	}
+
+	public function moveItem(){
+		$errors = array();
+
+		if(!empty($_POST)){
+
+			$id = $_POST["id"];
+			$x = $_POST["x"];
+			$y = $_POST["y"];
+
+			if(empty($errors)){
+					$this->projectDAO->moveUpdate(array(
+						"id"=>$id,
+						"posX"=>$x,
+						"posY"=>$y
+					));
+					//$_SESSION["info"] = "Project created successfully";
+					//$this->redirect("index.php?page=detail&id=");
+			}
+		}	
+
+		if(!empty($errors)){
+			$_SESSION["error"] = "the sticky note could not be moved";
+		}
+		$this->set('errors', $errors);
+	}
 }

@@ -42,6 +42,10 @@ $routes = array(
         'controller' => 'Projects', 
         'action' => 'deleteItem'
     ),
+    'moveItem' => array(
+        'controller' => 'Projects', 
+        'action' => 'moveItem'
+    ),
     'register' => array(
         'controller' => 'Users',
         'action' => 'register'

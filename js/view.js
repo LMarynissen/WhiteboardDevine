@@ -28,6 +28,7 @@
         this.el = document.createElement('div');
         this.el.classList.add('stickyNote');
         this.el.classList.add('sticky'+ id);
+        this.el.setAttribute('itemId', id); 
         var titleEl = document.createElement("h3");      
         var t = document.createTextNode(title);       
         titleEl.appendChild(t);                           
@@ -93,13 +94,33 @@
           }
 
           Sticky.prototype.mouseMoveHandler = function (event) {
-            console.log("mouseMoveHandler");
+            //move the sticky
+            //console.log("mouseMoveHandler");
             this.el.style.left = (event.x - this.offsetX) + 'px';
             this.el.style.top = (event.y - this.offsetY )+ 'px';
+            
+            //upload sticky pos to database
+              $.ajax({
+                type: "POST",
+                url: 'index.php?page=moveItem',
+                data: {id: this.el.getAttribute("itemId"),
+                       x: this.el.style.left,
+                       y: this.el.style.top,
+                      },
+                success: function(data) {
+                console.log('success');
+                console.log(data);
+              },
+                error: function(error) {
+                console.log('error');
+                console.log(error);
+                }
+              });
+  
           }
 
           Sticky.prototype.mouseUpHandler = function (event) {
-            console.log("mouseUpHandler");
+            //console.log("mouseUpHandler");
 
             window.removeEventListener('mousemove', this._mouseMoveHandler);
             window.removeEventListener('mouseup', this._mouseUpHandler);
