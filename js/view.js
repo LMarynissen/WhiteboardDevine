@@ -59,8 +59,9 @@
         creatorEl.appendChild(t);                     
         this.el.appendChild(creatorEl);
 
-        var deleteEl = document.createElement("button");   
-        deleteEl.classList.add('stickyDeleteButton');    
+        var deleteEl = document.createElement("a");   
+        deleteEl.classList.add('stickyDeleteButton');
+        deleteEl.setAttribute('href',"index.php?page=deleteItem&id=" + id);    
         var t = document.createTextNode("delete");       
         deleteEl.appendChild(t);                     
         this.el.appendChild(deleteEl);              

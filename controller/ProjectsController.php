@@ -85,7 +85,7 @@ class ProjectsController extends Controller {
 				}
 			}
 			if(empty($errors["image"])){
-				if($size[0] < 400 || $size[1] < 400){
+				if($size[0] < 200 || $size[1] < 200){
 					$errors["image"] = "image should be at least 400x400";
 				}
 			}
@@ -139,6 +139,21 @@ class ProjectsController extends Controller {
 
 		if(!empty($errors)){
 			$_SESSION["error"] = "the project could not be deleted";
+		}
+		$this->set('errors', $errors);
+	}
+
+	public function deleteItem(){
+		$errors = array();
+
+		if(empty($errors)){
+				$this->projectDAO->deleteItem($_GET["id"]);
+				$_SESSION["info"] = "Item deleted successfully";
+				$this->redirect("index.php");
+		}
+
+		if(!empty($errors)){
+			$_SESSION["error"] = "the Item could not be deleted";
 		}
 		$this->set('errors', $errors);
 	}

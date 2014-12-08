@@ -68,7 +68,6 @@ class ProjectDAO extends DAO {
 
 	public function delete($id) {
 
-			//STICKYNOTES WORDEN NOG NIET VERWIJDERD ZO WAJOW
 			$sql = " DELETE FROM projects
 					 WHERE id = :id";
 	        $stmt = $this->pdo->prepare($sql);
@@ -83,6 +82,20 @@ class ProjectDAO extends DAO {
 	        $stmt2 = $this->pdo->prepare($sql2);
 	        $stmt2->bindValue(':project_id', $id);
 			if($stmt2->execute()) {
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+		
+		return false;
+	}
+
+	public function deleteItem($id) {
+
+			$sql = " DELETE FROM items
+					 WHERE id = :id";
+	        $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':id', $id);
+			if($stmt->execute()) {
 			//	$insertedId = $this->pdo->lastInsertId();
 			//	return $this->selectById($insertedId);
 			}
