@@ -6,7 +6,7 @@
         <link href="css/screen.css" rel="stylesheet">
     </head>
     <body>
-
+        <script src="js/vendor/jquery.1.11.0.min.js"></script>
         <nav role="navigation">
             <div class="container">
                 <ul>
@@ -29,7 +29,6 @@
             <?php echo $content; ?>
         </div>
 
-        <script src="js/vendor/jquery.1.11.0.min.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>

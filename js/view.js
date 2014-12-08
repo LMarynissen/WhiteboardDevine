@@ -27,7 +27,7 @@
         //aanmaken HTML-element
         this.el = document.createElement('div');
         this.el.classList.add('stickyNote');
-         
+        this.el.classList.add('sticky'+ id);
         var titleEl = document.createElement("h3");      
         var t = document.createTextNode(title);       
         titleEl.appendChild(t);                           
@@ -61,7 +61,8 @@
 
         var deleteEl = document.createElement("a");   
         deleteEl.classList.add('stickyDeleteButton');
-        deleteEl.setAttribute('href',"index.php?page=deleteItem&id=" + id);    
+        deleteEl.setAttribute('href',"index.php?page=deleteItem&id=" + id);  
+        deleteEl.setAttribute('itemId', id);   
         var t = document.createTextNode("delete");       
         deleteEl.appendChild(t);                     
         this.el.appendChild(deleteEl);              

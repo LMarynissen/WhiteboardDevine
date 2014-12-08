@@ -91,3 +91,4 @@
           var items = <?php echo json_encode($items) ?>;
 </script>
 <script src="js/view.js"></script>
+<script src="js/ajaxDeleteItem.js"></script>

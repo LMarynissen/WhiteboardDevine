@@ -147,7 +147,7 @@ class ProjectsController extends Controller {
 		$errors = array();
 
 		if(empty($errors)){
-				$this->projectDAO->deleteItem($_GET["id"]);
+				$this->projectDAO->deleteItem($_POST["id"]);
 				$_SESSION["info"] = "Item deleted successfully";
 				$this->redirect("index.php");
 		}
