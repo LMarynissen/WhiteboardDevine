@@ -97,6 +97,14 @@ class UsersController extends Controller {
 			$user = $this->userDAO->selectByEmail($_POST["email"]);
 			$project_id = $_GET["id"];
 
+			if(empty($user)){
+				$errors['user'] = 'Please enter a valid email address';
+			}
+
+			if(empty($project_id)){
+				$errors['project_id'] = 'OH GOD, SOMETHING WENT WRONG! SAVE YOURSELF!';
+			}
+
 			if(empty($errors)){
 					$this->userDAO->invitePerson(array(
 						"project_id"=>$project_id,

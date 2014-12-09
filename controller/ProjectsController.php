@@ -31,6 +31,7 @@ class ProjectsController extends Controller {
 		if(!empty($_GET["id"])){
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
+			
 			$invited = $this->projectDAO->selectInvitedByProjectId($_GET["id"]);
 
 			if(!empty($_SESSION["user"])){

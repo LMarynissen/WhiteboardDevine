@@ -95,11 +95,16 @@
 
           Sticky.prototype.mouseMoveHandler = function (event) {
             //move the sticky
-            //console.log("mouseMoveHandler");
-            this.el.style.left = (event.x - this.offsetX) + 'px';
-            this.el.style.top = (event.y - this.offsetY )+ 'px';
+
+            this.el.style.left = (event.pageX - this.offsetX) + 'px';
+            this.el.style.top = (event.pageY - this.offsetY )+ 'px';
             
+  
+          }
+
+          Sticky.prototype.mouseUpHandler = function (event) {
             //upload sticky pos to database
+             
               $.ajax({
                 type: "POST",
                 url: 'index.php?page=moveItem',
@@ -116,11 +121,6 @@
                 console.log(error);
                 }
               });
-  
-          }
-
-          Sticky.prototype.mouseUpHandler = function (event) {
-            //console.log("mouseUpHandler");
 
             window.removeEventListener('mousemove', this._mouseMoveHandler);
             window.removeEventListener('mouseup', this._mouseUpHandler);
