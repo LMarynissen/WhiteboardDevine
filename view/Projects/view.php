@@ -82,6 +82,30 @@
             <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Add sticky note" class="btn btn-default"></div>
         </div>
     </form>
+
+
+
+    
+    <form action="index.php?page=invitePerson&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <header>
+          <h1>Invite someone</h1>
+        </header>
+
+        <div class="form-group<?php if(!empty($errors['email'])) echo ' has-error'; ?>">
+            <label for="addEmail">Email address:</label>
+            <div>
+                <input type="email" name="email" accesskey="t" id="addEmail" value="<?php if(!empty($_POST['email'])) echo $_POST['email'];?>" />
+                <span class="error-message"<?php if(empty($errors['email'])) echo 'style="display: none;"';?>><?php
+                if(empty($errors['email'])) echo 'Please fill in a email';
+                else echo $errors['email'];
+                ?></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Invite" class="btn btn-default"></div>
+        </div>
+    </form>
     </section>
 
 

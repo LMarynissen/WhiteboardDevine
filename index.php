@@ -46,6 +46,10 @@ $routes = array(
         'controller' => 'Projects', 
         'action' => 'moveItem'
     ),
+    'invitePerson' => array(
+        'controller' => 'Users', 
+        'action' => 'invitePerson'
+    ),
     'register' => array(
         'controller' => 'Users',
         'action' => 'register'

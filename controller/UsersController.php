@@ -89,4 +89,29 @@ class UsersController extends Controller {
 		$this->redirect('index.php');
 	}
 
+	public function invitePerson(){
+		$errors = array();
+
+		if(!empty($_POST)){
+
+			$user = $this->userDAO->selectByEmail($_POST["email"]);
+			$project_id = $_GET["id"];
+
+			if(empty($errors)){
+					$this->userDAO->invitePerson(array(
+						"project_id"=>$project_id,
+						"user_id"=>$user['id']
+					));
+					//$_SESSION["info"] = "Person invited successfully";
+					$this->redirect("index.php?page=detail&id=".$_GET['id']);
+			}
+		}	
+
+		if(!empty($errors)){
+			$_SESSION["error"] = "the person could not be invited";
+		}
+		$this->set('errors', $errors);
+	}
+
+
 }

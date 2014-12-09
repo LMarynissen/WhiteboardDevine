@@ -25,16 +25,43 @@ class ProjectsController extends Controller {
 
 		$project = false;
 		$items = false;
+		$invited = false;
+		$access = false;
 
 		if(!empty($_GET["id"])){
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
+			$invited = $this->projectDAO->selectInvitedByProjectId($_GET["id"]);
+
+			if(!empty($_SESSION["user"])){
+				//If person is on the invited list for this whiteboard
+				foreach ($invited as $invite) {
+					if($_SESSION["user"]["id"] == $invite['user_id']){
+						$access = true;
+					}
+				}
+
+				//If person is creator of whiteboard
+				if($_SESSION["user"]["id"] == $project['user_id']){
+					$access = true;
+				}
+
+				if(!$access){
+					$_SESSION["info"] = "You do not have access to this whiteboard";
+					$this->redirect("index.php");
+				}
+
+			}else{
+				$_SESSION["info"] = "You need to be logged in to view whiteboards";
+				$this->redirect("index.php");
+			}
 			
 			if(empty($project)){
 				$this->redirect("index.php");
 			}
 			$this->set("project",$project);
 			$this->set("items",$items);
+			$this->set("access",$access);
 		} else {
 			$this->redirect("index.php");
 		}

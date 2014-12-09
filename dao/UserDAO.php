@@ -57,4 +57,19 @@ class UserDAO extends DAO {
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
+
+	public function invitePerson($data) {
+		//$errors = $this->getValidationErrors($data);
+		if(empty($errors)) {
+			$sql = "INSERT INTO `invites` (`project_id`, `user_id`) VALUES (:project_id, :user_id)";
+	        $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':project_id', $data['project_id']);
+	        $stmt->bindValue(':user_id', $data['user_id']);
+			if($stmt->execute()) {
+				$insertedId = $this->pdo->lastInsertId();
+				return $this->selectById($insertedId);
+			}
+		}
+		return false;
+	}
 }
