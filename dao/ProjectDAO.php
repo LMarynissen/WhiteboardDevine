@@ -89,8 +89,8 @@ class ProjectDAO extends DAO {
 	public function insertVideo($data) {
 		$errors = $this->getValidationErrors($data);
 		if(empty($errors)) {
-			$sql = "INSERT INTO `items` (`user_id`, `title`, `description`, `project_id`, `contentlink`, `extension`, `posX`, `posY`, `datum`, `Color`) 
-								 VALUES (:user_id, :title, :description, :project_id, :contentlink, :extension, :posX, :posY, :datum, :Color)";
+			$sql = "INSERT INTO `items` (`user_id`, `title`, `description`, `project_id`, `contentlink`, `extension`, `posX`, `posY`, `datum`, `color`) 
+								 VALUES (:user_id, :title, :description, :project_id, :contentlink, :extension, :posX, :posY, :datum, :color)";
 	        $stmt = $this->pdo->prepare($sql);
 	        $stmt->bindValue(':user_id', $data['user_id']);
 	        $stmt->bindValue(':title', $data['title']);
@@ -101,7 +101,7 @@ class ProjectDAO extends DAO {
 	        $stmt->bindValue(':posX', $data['posX']);
 	        $stmt->bindValue(':posY', $data['posY']);
 	        $stmt->bindValue(':datum', $data['datum']);
-	        $stmt->bindValue(':Color', $data['Color']);
+	        $stmt->bindValue(':color', $data['color']);
 			if($stmt->execute()) {
 			//	$insertedId = $this->pdo->lastInsertId();
 			//	return $this->selectById($insertedId);
