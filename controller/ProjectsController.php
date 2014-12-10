@@ -45,12 +45,15 @@ class ProjectsController extends Controller {
 
 			if(!empty($_SESSION["user"])){
 				//If person is on the invited list for this whiteboard
+	
+
 				foreach ($invited as $invite) {
-					prinf($invited);
-					die();
+				//	print_r($invited);
+				//	print_r("current user id:".$_SESSION["user"]["id"]);
+				//	print_r("project owner:".$project["user_id"]);
+				//	die();
 					if($_SESSION["user"]["id"] == $invite['user_id']){
 						$access = true;
-
 					}
 				}
 
@@ -113,11 +116,12 @@ class ProjectsController extends Controller {
 		$errors = array();
 		$size = array();
 
-		print_r($_FILES);
-		die();
+		
 
-		if(isset($_FILES["image"])){
-			if(!empty($_FILES["image"])){
+		if($_FILES['image']['error'] == 0){
+
+		
+
 				if(!empty($_FILES["image"]["error"])){
 					$errors["image"] = "the image could not be uploaded";
 				}
@@ -136,7 +140,7 @@ class ProjectsController extends Controller {
 
 				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["image"]["name"]);
 				$extension = explode($contentlink.".", $_FILES["image"]["name"])[1];
-			}
+			
 		}
 			
 			//if(empty($errors["image"])){
@@ -149,7 +153,7 @@ class ProjectsController extends Controller {
 				if(empty($description)){
 					$description = " ";
 				}
-				$Color = $_POST["color"];
+				$color = $_POST["color"];
 
 				if(empty($contentlink)){
 					$contentlink = " ";
@@ -169,10 +173,9 @@ class ProjectsController extends Controller {
 					"description"=>$description,
 					"project_id"=>$_GET["id"],
 					"datum"=>date("Y-m-d h:i:s"),
-					"Color"=>$Color
+					"color"=>$color
 				));
-				if(isset($_FILES["image"])){
-					if(!empty($_FILES["image"])){
+				if($_FILES['image']['error'] == 0){
 					$imageresize = new EventViva\ImageResize($_FILES["image"]["tmp_name"]);
 					$imageresize->resizeToHeight(600);
 					//$imageresize->crop(600,600);
@@ -180,7 +183,7 @@ class ProjectsController extends Controller {
 					$imageresize->resizeToHeight(120);
 					$imageresize->crop(180,120);
 					$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);	
-					}
+					
 				}
 				$this->redirect("index.php?page=detail&id=".$_GET["id"]);
 				$_SESSION["info"] = "The sticky note was uploaded";
@@ -192,6 +195,9 @@ class ProjectsController extends Controller {
 		}
 
 		$this->set('errors', $errors);
+
+		print_r($errors['image']);
+		die();
 	}
 
 	public function delete(){

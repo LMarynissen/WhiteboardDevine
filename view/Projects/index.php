@@ -7,7 +7,7 @@
 	    	echo "<a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a>";
 		}
 		foreach ($invitedProjects as $invitedProject ) {
-	    	echo "<a href=\"index.php?page=detail&amp;id={$invitedProject['id']}\"> {$invitedProject['title']} </a>";
+	    	echo "<a href=\"index.php?page=detail&amp;id={$invitedProject['project_id']}\"> {$invitedProject['title']} </a>";
 		}
 	} else {
 		echo "<p>No projects</p>";
