@@ -18,6 +18,7 @@ class ProjectsController extends Controller {
 	public function index() {
 		if(!empty($_SESSION["user"])){
 			$this->set("projects",$this->projectDAO->selectByUser($_SESSION["user"]["id"]));
+			$this->set("invitedProjects",$this->projectDAO->selectInvitedProjectsByUser($_SESSION["user"]["id"]));
 		}
 	}
 
@@ -25,20 +26,29 @@ class ProjectsController extends Controller {
 
 		$project = false;
 		$items = false;
+		$itemCreators = false;
 		$invited = false;
 		$access = false;
 
 		if(!empty($_GET["id"])){
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
-			
+				for( $i = 0; $i < sizeof($items); $i++ ){
+					//$itemCreators[$i] = 
+				}
+				foreach ($items as $item) {
+
+					}
 			$invited = $this->projectDAO->selectInvitedByProjectId($_GET["id"]);
+
+			//Check if user is allowed to view the whiteboard
 
 			if(!empty($_SESSION["user"])){
 				//If person is on the invited list for this whiteboard
 				foreach ($invited as $invite) {
 					if($_SESSION["user"]["id"] == $invite['user_id']){
 						$access = true;
+
 					}
 				}
 
@@ -101,29 +111,49 @@ class ProjectsController extends Controller {
 		$errors = array();
 		$size = array();
 
-		if(!empty($_FILES["image"])){
-			if(!empty($_FILES["image"]["error"])){
-				$errors["image"] = "the image could not be uploaded";
-			}
+		if(is_uploaded_file($_FILES["image"]["name"])){
+			if(!empty($_FILES["image"])){
+				if(!empty($_FILES["image"]["error"])){
+					$errors["image"] = "the image could not be uploaded";
+				}
 
-			if(empty($errors["image"])){
-				$size = getimagesize($_FILES["image"]["tmp_name"]);
-				if(empty($size)){
-					$errors["image"] = "please insert an image";
+				if(empty($errors["image"])){
+					$size = getimagesize($_FILES["image"]["tmp_name"]);
+					if(empty($size)){
+						$errors["image"] = "please insert an image";
+					}
 				}
-			}
-			if(empty($errors["image"])){
-				if($size[0] < 200 || $size[1] < 200){
-					$errors["image"] = "image should be at least 200x200";
+				if(empty($errors["image"])){
+					if($size[0] < 200 || $size[1] < 200){
+						$errors["image"] = "image should be at least 200x200";
+					}
 				}
-			}
-			if(empty($errors["image"])){
-				$project_id = $_GET["id"];
-				$title = $_POST["title"];
-				$description = $_POST["description"];
-				$color = $_POST["color"];
+
 				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["image"]["name"]);
 				$extension = explode($contentlink.".", $_FILES["image"]["name"])[1];
+			}
+		}
+			
+			//if(empty($errors["image"])){
+				$project_id = $_GET["id"];
+				$title = $_POST["title"];
+				if(empty($title)){
+					$title = " ";
+				}
+				$description = $_POST["description"];
+				if(empty($description)){
+					$description = " ";
+				}
+				$color = $_POST["color"];
+
+				if(empty($contentlink)){
+					$contentlink = " ";
+				}
+				
+				if(empty($extension)){
+					$extension = " ";
+				}
+
 				$this->projectDAO->insertItem(array(
 					"user_id"=>$_SESSION["user"]["id"],
 					"contentlink"=>$contentlink,
@@ -136,18 +166,22 @@ class ProjectsController extends Controller {
 					"datum"=>date("Y-m-d h:i:s"),
 					"color"=>$color
 				));
-				$imageresize = new EventViva\ImageResize($_FILES["image"]["tmp_name"]);
-				$imageresize->resizeToHeight(600);
-				//$imageresize->crop(600,600);
-				$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
-				$imageresize->resizeToHeight(120);
-				$imageresize->crop(180,120);
-				$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);
+
+				if(is_uploaded_file($_FILES["image"]["name"])){
+					if(!empty($_FILES["image"])){
+					$imageresize = new EventViva\ImageResize($_FILES["image"]["tmp_name"]);
+					$imageresize->resizeToHeight(600);
+					//$imageresize->crop(600,600);
+					$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
+					$imageresize->resizeToHeight(120);
+					$imageresize->crop(180,120);
+					$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);	
+					}
+				}
 				$this->redirect("index.php?page=detail&id=".$_GET["id"]);
 				$_SESSION["info"] = "The sticky note was uploaded";
-			}
+		
 
-		}
 		if(!empty($errors)){
 			$_SESSION["error"] = "the sticky note could not be uploaded";
 

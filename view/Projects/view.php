@@ -72,17 +72,6 @@
                 ?></span>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Add sticky note" class="btn btn-default"></div>
-        </div>
-        </form>
-  </section>
-
-    <section class="postitform-img">
-    <header>
-        <h1>Add image/video</h1>
-      </header>
-	    <form action="index.php?page=addItem&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
 
         <div class="form-group<?php if(!empty($errors['description'])) echo ' has-error'; ?>">
             <label for="addImage">Image:</label>
@@ -100,7 +89,7 @@
         </div>
     </form>
     </section>
-
+    
     <form action="index.php?page=invitePerson&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
         <header>
           <h1>Invite someone</h1>
