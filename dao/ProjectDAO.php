@@ -26,14 +26,18 @@ class ProjectDAO extends DAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-/*	public function selectInvitedProjects($user_id, ) {
-		$sql = "SELECT * FROM `projects` WHERE `user_id` = :user_id INNER JOIN ";
+	public function selectInvitedProjectsByUser($user_id) {
+		$sql = "SELECT *
+				FROM `projects`
+				INNER JOIN `invites`
+				ON `invites`.project_id = `projects`.id
+				WHERE `invites`.user_id = :user_id";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindValue(':user_id', $user_id);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-*/
+
 	public function selectByUser($user_id) {
 		$sql = "SELECT * FROM `projects` WHERE `user_id` = :user_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -59,6 +63,30 @@ class ProjectDAO extends DAO {
 	}
 
 	public function insertItem($data) {
+		$errors = $this->getValidationErrors($data);
+		if(empty($errors)) {
+			$sql = "INSERT INTO `items` (`user_id`, `title`, `description`, `project_id`, `contentlink`, `extension`, `posX`, `posY`, `datum`, `Color`) 
+								 VALUES (:user_id, :title, :description, :project_id, :contentlink, :extension, :posX, :posY, :datum, :Color)";
+	        $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':user_id', $data['user_id']);
+	        $stmt->bindValue(':title', $data['title']);
+	        $stmt->bindValue(':description', $data['description']);
+	        $stmt->bindValue(':project_id', $data['project_id']);
+	        $stmt->bindValue(':contentlink', $data['contentlink']);
+	        $stmt->bindValue(':extension', $data['extension']);
+	        $stmt->bindValue(':posX', $data['posX']);
+	        $stmt->bindValue(':posY', $data['posY']);
+	        $stmt->bindValue(':datum', $data['datum']);
+	        $stmt->bindValue(':Color', $data['Color']);
+			if($stmt->execute()) {
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+		}
+		return false;
+	}
+
+	public function insertVideo($data) {
 		$errors = $this->getValidationErrors($data);
 		if(empty($errors)) {
 			$sql = "INSERT INTO `items` (`user_id`, `title`, `description`, `project_id`, `contentlink`, `extension`, `posX`, `posY`, `datum`, `Color`) 

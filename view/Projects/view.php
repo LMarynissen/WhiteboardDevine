@@ -83,8 +83,6 @@
         </div>
     </form>
 
-
-
     
     <form action="index.php?page=invitePerson&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
         <header>
