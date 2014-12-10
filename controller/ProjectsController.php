@@ -114,14 +114,14 @@ class ProjectsController extends Controller {
 			}
 			if(empty($errors["image"])){
 				if($size[0] < 200 || $size[1] < 200){
-					$errors["image"] = "image should be at least 400x400";
+					$errors["image"] = "image should be at least 200x200";
 				}
 			}
 			if(empty($errors["image"])){
 				$project_id = $_GET["id"];
 				$title = $_POST["title"];
 				$description = $_POST["description"];
-				$Color = $_POST["color"];
+				$color = $_POST["color"];
 				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["image"]["name"]);
 				$extension = explode($contentlink.".", $_FILES["image"]["name"])[1];
 				$this->projectDAO->insertItem(array(
@@ -134,7 +134,7 @@ class ProjectsController extends Controller {
 					"description"=>$description,
 					"project_id"=>$_GET["id"],
 					"datum"=>date("Y-m-d h:i:s"),
-					"Color"=>$Color
+					"color"=>$color
 				));
 				$imageresize = new EventViva\ImageResize($_FILES["image"]["tmp_name"]);
 				$imageresize->resizeToHeight(600);

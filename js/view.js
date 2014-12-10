@@ -6,7 +6,7 @@
 
           for(var i = 0; i < items.length; i++){
              var sticky = new Sticky(
-             items[i].Color,
+             items[i].color,
              items[i].contentlink,
              items[i].datum,
              items[i].description,
@@ -22,7 +22,7 @@
           }
       }
 
-      function Sticky(Color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id) {
+      function Sticky(color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id) {
            
         //aanmaken HTML-element
         this.el = document.createElement('div');
@@ -71,7 +71,7 @@
         this.el.style.left = posX + "px";
         this.el.style.top = posY + "px";
 
-        this.el.style.backgroundColor = Color;
+        this.el.style.backgroundColor = color;
           
         //handlers binden
         this._mouseDownHandler = this.mouseDownHandler.bind(this);

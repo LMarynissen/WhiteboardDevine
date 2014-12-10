@@ -109,12 +109,21 @@ nav ul p > a{
 /*------------ WHITEBOARD PROJECT -------------- */
 
 
+.goBack{
+margin-top: 50px;
+}
+
+.goBack a{
+	background-color: #139b8b;
+	padding: 10px;
+	border-radius: 2px;
+	width: 110px;
+	margin-left: 50px;
+	margin-top: 50px;
+	color: white;
+}
+
 .projectWindow{
-    width:944px;
-    height:536px;
-    background-image: url('../images/test.jpg');
-    margin-left:-50px;
-    margin-top:50px;
 }
 
 .stickyNote{
@@ -133,6 +142,17 @@ nav ul p > a{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.project-view{
+	width: 200px;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: -30px;
+}
+
+.project-view h1{
+	font-size: 3em;
 }
 
 .stickyContent{
@@ -159,8 +179,12 @@ nav ul p > a{
 
 .postitform{
 	float: right;
-	margin-top: 50px;
+
 	color: white;
+	background-color: #139b8b;
+	padding-top: 100px;
+	padding-bottom: 90px;
+	padding-left: 50px;
 }
 
 .postitform  h1{

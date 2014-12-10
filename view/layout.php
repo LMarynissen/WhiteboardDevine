@@ -10,7 +10,7 @@
         <nav role="navigation">
             <div class="container">
                 <ul>
-                    <li class= "schreef"><a class href="index.php">Whiteboard</a></li>
+                    <li class= "schreef"><a href="index.php">Whiteboard</a></li>
                     <div class = "line"></div>
                     <?php if (empty($_SESSION["user"])) { ?>
                     <li class ="sans" ><a href="index.php?page=login">login</a></li>

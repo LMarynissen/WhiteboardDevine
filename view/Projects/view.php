@@ -1,11 +1,11 @@
-<section id="content">
+  <div class="goBack">
+    <a href="index.php?page=index">Ga terug naar projecten</a>
+  </div>
 
-  <h1><?php echo $project["title"]; ?></h1>
-  <h3><?php echo $project["description"]; ?></h3>
-
-  <?php 
-  echo "<a href=\"index.php?page=delete&amp;id={$project["id"]}\" >Delete this project</a>";
-  ?>
+  <article class="project-view">
+    <h1><?php echo $project["title"]; ?></h1>
+    <h3><?php echo $project["description"]; ?></h3>
+   </article>
 
   <div class="projectWindow">
 
@@ -29,11 +29,17 @@
     } ?>
 
   <section class="postitform">
-	<form action="index.php?page=addItem&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
-        <header>
-          <h1>New sticky note</h1>
-        </header>
+      <header>
+        <h1>New sticky note</h1>
+      </header>
 
+  <section class="postitform-desc">
+      <header>
+        <h1>Add description</h1>
+      </header>
+
+    <form action="index.php?page=addItem&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
+        
         <div class="form-group<?php if(!empty($errors['title'])) echo ' has-error'; ?>">
             <label for="addTitle">Title:</label>
             <div>
@@ -66,6 +72,17 @@
                 ?></span>
             </div>
         </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Add sticky note" class="btn btn-default"></div>
+        </div>
+        </form>
+  </section>
+
+    <section class="postitform-img">
+    <header>
+        <h1>Add image/video</h1>
+      </header>
+	    <form action="index.php?page=addItem&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
 
         <div class="form-group<?php if(!empty($errors['description'])) echo ' has-error'; ?>">
             <label for="addImage">Image:</label>
@@ -82,10 +99,8 @@
             <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Add sticky note" class="btn btn-default"></div>
         </div>
     </form>
+    </section>
 
-
-
-    
     <form action="index.php?page=invitePerson&amp;id=<?php echo $project['id']; ?>" method="post" class="form-horizontal" enctype="multipart/form-data">
         <header>
           <h1>Invite someone</h1>
@@ -106,10 +121,13 @@
             <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Invite" class="btn btn-default"></div>
         </div>
     </form>
+     <?php 
+  echo "<a href=\"index.php?page=delete&amp;id={$project["id"]}\" >Delete this project</a>";
+  ?>
     </section>
 
 
-</section>
+
 <script type="text/javascript">
 //MAAKT EEN JSON BESTAND VAN ALLE $ITEMS
           var items = <?php echo json_encode($items) ?>;
