@@ -50,12 +50,22 @@ class ProjectDAO extends DAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-
-
 	public function selectByUser($user_id) {
 		$sql = "SELECT * FROM `projects` WHERE `user_id` = :user_id";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindValue(':user_id', $user_id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function selectUserByItemId($item_id) {
+		$sql = "SELECT email
+				FROM `users`
+				INNER JOIN `items`
+				ON `items`.user_id = `users`.id
+				WHERE `items`.id = :item_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':item_id', $item_id);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}

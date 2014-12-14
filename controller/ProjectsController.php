@@ -34,8 +34,10 @@ class ProjectsController extends Controller {
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
 				for( $i = 0; $i < sizeof($items); $i++ ){
-					//$itemCreators[$i] = 
+					$itemCreators[$i] = $this->projectDAO->selectUserByItemId($items[$i]['id']);
+
 				}
+
 				foreach ($items as $item) {
 
 					}
@@ -77,6 +79,7 @@ class ProjectsController extends Controller {
 			}
 			$this->set("project",$project);
 			$this->set("items",$items);
+			$this->set("itemCreators",$itemCreators);
 			$this->set("access",$access);
 		} else {
 			$this->redirect("index.php");

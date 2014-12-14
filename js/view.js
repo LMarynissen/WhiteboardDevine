@@ -16,13 +16,14 @@
              items[i].posY,
              items[i].project_id,
              items[i].title,
-             items[i].user_id
+             items[i].user_id,
+             itemCreators[i][0]['email']
              );
              document.body.appendChild(sticky.el);
           }
       }
 
-      function Sticky(color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id) {
+      function Sticky(color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id, user) {
            
         //aanmaken HTML-element
         this.el = document.createElement('div');
@@ -60,7 +61,7 @@
 
         var creatorEl = document.createElement("p");   
         creatorEl.classList.add('stickyCreator');    
-        var t = document.createTextNode("door " + user_id);       
+        var t = document.createTextNode("door " + user);       
         creatorEl.appendChild(t);                     
         this.el.appendChild(creatorEl);
 

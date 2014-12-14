@@ -120,6 +120,7 @@
 <script type="text/javascript">
 //MAAKT EEN JSON BESTAND VAN ALLE $ITEMS
           var items = <?php echo json_encode($items) ?>;
+          var itemCreators = <?php echo json_encode($itemCreators) ?>;
 </script>
 <script src="js/view.js"></script>
 <script src="js/ajaxDeleteItem.js"></script>
