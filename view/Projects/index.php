@@ -2,7 +2,7 @@
 	<header><h1>Your Projects</h1></header>
 
 
-	<?php if (!empty($projects)) {
+	<?php if (!empty($projects) || !empty($invitedProjects)) {
 		foreach ($projects as $project ) {
 	    	echo "<a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a>";
 		}

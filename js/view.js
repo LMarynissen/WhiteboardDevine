@@ -41,10 +41,14 @@
 
         var aThumbnail = document.createElement("a");   
         aThumbnail.classList.add('stickyContent');
+        if(contentlink != " "){
         aThumbnail.setAttribute('href',"uploads/" + contentlink + "." + extension);
+        }
         var thumbnail = document.createElement("div");   
         thumbnail.classList.add('stickyContent');
+        if(contentlink != " "){
         thumbnail.style.backgroundImage = 'url(uploads/' + contentlink + '_th.' + extension + ')';
+        }
         aThumbnail.appendChild(thumbnail);
         this.el.appendChild(aThumbnail);
 
