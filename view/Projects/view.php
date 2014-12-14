@@ -74,12 +74,12 @@
         </div>
 
         <div class="form-group<?php if(!empty($errors['description'])) echo ' has-error'; ?>">
-            <label for="addImage">Image:</label>
+            <label for="addImage">Image/Video:</label>
             <div>
-                <input type="file" name="image" id="addImage" value="<?php if(!empty($_POST['image'])) echo $_POST['image'];?>" />
-                <span class="error-message"<?php if(empty($errors['image'])) echo 'style="display: none;"';?>><?php
-                if(empty($errors['image'])) echo 'Please select an image';
-                else echo $errors['image'];
+                <input type="file" name="content" id="addImage" value="<?php if(!empty($_POST['content'])) echo $_POST['content'];?>" />
+                <span class="error-message"<?php if(empty($errors['content'])) echo 'style="display: none;"';?>><?php
+                if(empty($errors['content'])) echo 'Please select an content';
+                else echo $errors['content'];
                 ?></span>
             </div>
         </div>

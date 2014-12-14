@@ -40,18 +40,38 @@
         descriptionEl.appendChild(t);                         
         this.el.appendChild(descriptionEl);
 
-        var aThumbnail = document.createElement("a");   
-        aThumbnail.classList.add('stickyContent');
-        if(contentlink != " "){
-        aThumbnail.setAttribute('href',"uploads/" + contentlink + "." + extension);
+        if(extension == 'mp4'){
+
+          var thumbnail = document.createElement("video");   
+          thumbnail.classList.add('stickyContent');
+          thumbnail.setAttribute('width',180);
+          thumbnail.setAttribute('height',120);
+          thumbnail.setAttribute('controls','');
+          if(contentlink != " "){
+              var source = document.createElement("source"); 
+              source.setAttribute('src',"uploads/" + contentlink + "." + extension);
+              source.setAttribute('type',"video/mp4");
+          }
+          thumbnail.appendChild(source);
+          this.el.appendChild(thumbnail);
+
+        }else{
+
+          var aThumbnail = document.createElement("a");   
+          aThumbnail.classList.add('stickyContent');
+          if(contentlink != " "){
+          aThumbnail.setAttribute('href',"uploads/" + contentlink + "." + extension);
+          }
+          var thumbnail = document.createElement("div");   
+          thumbnail.classList.add('stickyContent');
+          if(contentlink != " "){
+              thumbnail.style.backgroundImage = 'url(uploads/' + contentlink + '_th.' + extension + ')';
+          }
+          aThumbnail.appendChild(thumbnail);
+          this.el.appendChild(aThumbnail);
         }
-        var thumbnail = document.createElement("div");   
-        thumbnail.classList.add('stickyContent');
-        if(contentlink != " "){
-        thumbnail.style.backgroundImage = 'url(uploads/' + contentlink + '_th.' + extension + ')';
-        }
-        aThumbnail.appendChild(thumbnail);
-        this.el.appendChild(aThumbnail);
+
+
 
         var datumEl = document.createElement("p");   
         datumEl.classList.add('stickyDate');    
