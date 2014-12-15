@@ -26,6 +26,15 @@ class ProjectDAO extends DAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public function selectInvitedByProjectAndUserId($project_id, $user_id) {
+		$sql = "SELECT * FROM `invites` WHERE `project_id` = :project_id AND `user_id` = :user_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':project_id', $project_id);
+		$stmt->bindValue(':user_id', $user_id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function selectInvitedProjectsByUser($user_id) {
 		$sql = "SELECT *
 				FROM `projects`
