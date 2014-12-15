@@ -34,8 +34,10 @@ class ProjectsController extends Controller {
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
 				for( $i = 0; $i < sizeof($items); $i++ ){
-					//$itemCreators[$i] = 
+					$itemCreators[$i] = $this->projectDAO->selectUserByItemId($items[$i]['id']);
+
 				}
+
 				foreach ($items as $item) {
 
 					}
@@ -77,6 +79,7 @@ class ProjectsController extends Controller {
 			}
 			$this->set("project",$project);
 			$this->set("items",$items);
+			$this->set("itemCreators",$itemCreators);
 			$this->set("access",$access);
 		} else {
 			$this->redirect("index.php");
@@ -118,32 +121,45 @@ class ProjectsController extends Controller {
 
 		
 
-		if($_FILES['image']['error'] == 0){
+		if($_FILES['content']['error'] == 0){
 
-		
-
-				if(!empty($_FILES["image"]["error"])){
-					$errors["image"] = "the image could not be uploaded";
+				//check if file is an image
+				$size = getimagesize($_FILES['content']['tmp_name']);
+				if(empty($size)) {
+					$isAnImage = false;
+				}else{
+					$isAnImage = true;
 				}
 
-				if(empty($errors["image"])){
-					$size = getimagesize($_FILES["image"]["tmp_name"]);
-					if(empty($size)){
-						$errors["image"] = "please insert an image";
+				if($isAnImage){
+					if(empty($errors["content"])){
+						$size = getimagesize($_FILES["content"]["tmp_name"]);
+						if(empty($size)){
+							$errors["content"] = "please insert either a video or an image";
+						}
 					}
-				}
-				if(empty($errors["image"])){
-					if($size[0] < 200 || $size[1] < 200){
-						$errors["image"] = "image should be at least 200x200";
+					if(empty($errors["content"])){
+						if($size[0] < 200 || $size[1] < 200){
+							$errors["content"] = "the image should be at least 200x200";
+						}
 					}
+					
+				}else{
+
+
 				}
 
-				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["image"]["name"]);
-				$extension = explode($contentlink.".", $_FILES["image"]["name"])[1];
+				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["content"]["name"]);
+				$extension = explode($contentlink.".", $_FILES["content"]["name"])[1];
+
+				if(!empty($_FILES["content"]["error"])){
+					$errors["content"] = "the content could not be uploaded";
+				}
+
 			
 		}
 			
-			//if(empty($errors["image"])){
+
 				$project_id = $_GET["id"];
 				$title = $_POST["title"];
 				if(empty($title)){
@@ -175,15 +191,24 @@ class ProjectsController extends Controller {
 					"datum"=>date("Y-m-d h:i:s"),
 					"color"=>$color
 				));
-				if($_FILES['image']['error'] == 0){
-					$imageresize = new EventViva\ImageResize($_FILES["image"]["tmp_name"]);
-					$imageresize->resizeToHeight(600);
-					//$imageresize->crop(600,600);
-					$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
-					$imageresize->resizeToHeight(120);
-					$imageresize->crop(180,120);
-					$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);	
-					
+
+
+				if($_FILES['content']['error'] == 0){
+					if($isAnImage){
+						$imageresize = new EventViva\ImageResize($_FILES["content"]["tmp_name"]);
+						$imageresize->resizeToHeight(600);
+						//$imageresize->crop(600,600);
+						$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
+						$imageresize->resizeToHeight(120);
+						$imageresize->crop(180,120);
+						$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);	
+					}else{
+						//VIDEO UPLOAD SHIZZLES
+						$target = "uploads/";
+						$target = $target . basename( $_FILES['content']['name']) ;
+						move_uploaded_file($_FILES['content']['tmp_name'], $target);
+					}
+
 				}
 				$this->redirect("index.php?page=detail&id=".$_GET["id"]);
 				$_SESSION["info"] = "The sticky note was uploaded";

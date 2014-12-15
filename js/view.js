@@ -16,13 +16,14 @@
              items[i].posY,
              items[i].project_id,
              items[i].title,
-             items[i].user_id
+             items[i].user_id,
+             itemCreators[i][0]['email']
              );
              document.body.appendChild(sticky.el);
           }
       }
 
-      function Sticky(color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id) {
+      function Sticky(color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id, user) {
            
         //aanmaken HTML-element
         this.el = document.createElement('div');
@@ -39,14 +40,38 @@
         descriptionEl.appendChild(t);                         
         this.el.appendChild(descriptionEl);
 
-        var aThumbnail = document.createElement("a");   
-        aThumbnail.classList.add('stickyContent');
-        aThumbnail.setAttribute('href',"uploads/" + contentlink + "." + extension);
-        var thumbnail = document.createElement("div");   
-        thumbnail.classList.add('stickyContent');
-        thumbnail.style.backgroundImage = 'url(uploads/' + contentlink + '_th.' + extension + ')';
-        aThumbnail.appendChild(thumbnail);
-        this.el.appendChild(aThumbnail);
+        if(extension == 'mp4'){
+
+          var thumbnail = document.createElement("video");   
+          thumbnail.classList.add('stickyContent');
+          thumbnail.setAttribute('width',180);
+          thumbnail.setAttribute('height',120);
+          thumbnail.setAttribute('controls','');
+          if(contentlink != " "){
+              var source = document.createElement("source"); 
+              source.setAttribute('src',"uploads/" + contentlink + "." + extension);
+              source.setAttribute('type',"video/mp4");
+          }
+          thumbnail.appendChild(source);
+          this.el.appendChild(thumbnail);
+
+        }else{
+
+          var aThumbnail = document.createElement("a");   
+          aThumbnail.classList.add('stickyContent');
+          if(contentlink != " "){
+          aThumbnail.setAttribute('href',"uploads/" + contentlink + "." + extension);
+          }
+          var thumbnail = document.createElement("div");   
+          thumbnail.classList.add('stickyContent');
+          if(contentlink != " "){
+              thumbnail.style.backgroundImage = 'url(uploads/' + contentlink + '_th.' + extension + ')';
+          }
+          aThumbnail.appendChild(thumbnail);
+          this.el.appendChild(aThumbnail);
+        }
+
+
 
         var datumEl = document.createElement("p");   
         datumEl.classList.add('stickyDate');    
@@ -56,7 +81,7 @@
 
         var creatorEl = document.createElement("p");   
         creatorEl.classList.add('stickyCreator');    
-        var t = document.createTextNode("door " + user_id);       
+        var t = document.createTextNode("door " + user);       
         creatorEl.appendChild(t);                     
         this.el.appendChild(creatorEl);
 
