@@ -12,18 +12,6 @@
   <?php if (!empty($items)) {
 
 
-		foreach ($items as $item ) {
-	    	//echo "<a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a>";
-	    /*	echo "  	
-	    		<div class=\"stickyNote\" posX=\"{$item['posX']}\" posY=\"{$item['posY']}\" style=\"left:{$item['posX']}px; top:{$item['posY']}px; \">
-  					<h3 class=\"stickyTitle\">{$item['title']}</h3>
-  					<h4 class=\"stickyTitle\">{$item['description']}</h4>
-  					<div class=\"stickyContent\" style=\"background-image: url('images/{$item['contentlink']}_th.{$item['extension']}');\"></div>
-					<button class=\"stickyDeleteButton\">Delete</button>
-  				</div>	
-  				";
-  		*/
-		}
 	} else {
 		echo "<p>No stickies placed yet</p>";
     } ?>
@@ -110,8 +98,11 @@
             <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Invite" class="btn btn-default"></div>
         </div>
 
-        <p>Invited pplz</p>
         <br />
+        <p>Project aangemaakt door:</p>
+        <p><?php echo $creatorEmail; ?></p>
+        <br />
+        <p>Uitgenodigden:</p>
         <ul>
         <?php 
           if (!empty($invitedNames)) {
@@ -119,13 +110,16 @@
           foreach ($invitedNames as $invite ) {
             echo "<li>{$invite['email']}</li>";
           }
+        }else{
+            echo "<li>Je hebt nog niemand uitgenodigd voor dit project</li>"; 
         }
         ?>
         </ul>
+        <br />
 
     </form>
      <?php 
-  echo "<a href=\"index.php?page=delete&amp;id={$project["id"]}\" >Delete this project</a>";
+  echo "<a href=\"index.php?page=delete&amp;id={$project["id"]}\" >Delete dit project</a>";
   ?>
     </section>
 
