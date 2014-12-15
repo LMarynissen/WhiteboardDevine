@@ -127,5 +127,21 @@ class UsersController extends Controller {
 		$this->set('errors', $errors);
 	}
 
+	public function deleteUser(){
+		$errors = array();
+
+		if(empty($errors)){
+				$this->userDAO->deleteUser($_GET["user_id"], $_GET["project_id"]);
+				$_SESSION["info"] = "Person deleted successfully. You monster.";
+				$this->redirect("index.php?page=detail&id=".$_GET['project_id']);
+
+		}
+
+		if(!empty($errors)){
+			$_SESSION["error"] = "the Person could not be deleted";
+		}
+		$this->set('errors', $errors);
+	}
+
 
 }

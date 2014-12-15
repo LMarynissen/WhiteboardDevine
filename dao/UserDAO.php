@@ -72,4 +72,20 @@ class UserDAO extends DAO {
 		}
 		return false;
 	}
+
+	public function deleteUser($user_id, $project_id) {
+
+			$sql = " DELETE FROM invites
+					 WHERE user_id = :user_id
+					 AND project_id = :project_id";
+	        $stmt = $this->pdo->prepare($sql);
+	        $stmt->bindValue(':user_id', $user_id);
+	        $stmt->bindValue(':project_id', $project_id);
+			if($stmt->execute()) {
+			//	$insertedId = $this->pdo->lastInsertId();
+			//	return $this->selectById($insertedId);
+			}
+		
+		return false;
+	}
 }
