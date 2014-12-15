@@ -32,6 +32,15 @@
            
         //aanmaken HTML-element
         this.el = document.createElement('div');
+
+        var deleteEl = document.createElement("a");   
+        deleteEl.classList.add('stickyDeleteButton');
+        deleteEl.setAttribute('href',"index.php?page=deleteItem&id=" + id);  
+        deleteEl.setAttribute('itemId', id);   
+        var t = document.createTextNode("x");       
+        deleteEl.appendChild(t);                     
+        this.el.appendChild(deleteEl);  
+
         if(extension == 'mp4'){
           this.el.classList.add('stickyNoteVideo');
         }else{
@@ -64,7 +73,7 @@
           thumbnail.appendChild(source);
           this.el.appendChild(thumbnail);
 
-        }else{
+        }else if(contentlink != " "){
 
           var aThumbnail = document.createElement("a");   
           aThumbnail.classList.add('stickyContent');
@@ -80,27 +89,19 @@
           this.el.appendChild(aThumbnail);
         }
 
-
-
         var datumEl = document.createElement("p");   
         datumEl.classList.add('stickyDate');    
-        var t = document.createTextNode("aangemaakt op " + datum);       
+        var t = document.createTextNode("Aangemaakt op " + datum);       
         datumEl.appendChild(t);                     
         this.el.appendChild(datumEl);
 
         var creatorEl = document.createElement("p");   
         creatorEl.classList.add('stickyCreator');    
-        var t = document.createTextNode("door " + user);       
+        var t = document.createTextNode("Door " + user);       
         creatorEl.appendChild(t);                     
         this.el.appendChild(creatorEl);
 
-        var deleteEl = document.createElement("a");   
-        deleteEl.classList.add('stickyDeleteButton');
-        deleteEl.setAttribute('href',"index.php?page=deleteItem&id=" + id);  
-        deleteEl.setAttribute('itemId', id);   
-        var t = document.createTextNode("delete");       
-        deleteEl.appendChild(t);                     
-        this.el.appendChild(deleteEl);              
+                 
 
         this.el.style.left = posX + "px";
         this.el.style.top = posY + "px";
@@ -132,13 +133,11 @@
 
             this.el.style.left = (event.pageX - this.offsetX) + 'px';
             this.el.style.top = (event.pageY - this.offsetY )+ 'px';
-            
-  
           }
 
           Sticky.prototype.mouseUpHandler = function (event) {
             //upload sticky pos to database
-             
+
               $.ajax({
                 type: "POST",
                 url: 'index.php?page=moveItem',
