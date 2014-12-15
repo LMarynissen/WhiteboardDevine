@@ -11,14 +11,15 @@
 	</article>
 
 	<article>
+	<h2>Eigen whiteboards</h2>
+
 	<?php if (!empty($projects) || !empty($invitedProjects)) {
 		foreach ($projects as $project ) {
-			echo "<h2>Eigen whiteboards</h2>";
-	    	echo "<a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a>";
+	    	echo "<li class=\"invited\"><a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a></li>";
 		}
 		foreach ($invitedProjects as $invitedProject ) {
 			echo "<h2>Samenwerkingen</h2>";
-	    	echo "<a href=\"index.php?page=detail&amp;id={$invitedProject['project_id']}\"> {$invitedProject['title']} </a>";
+	    	echo "<li class=\"invited\"><a href=\"index.php?page=detail&amp;id={$invitedProject['project_id']}\"> {$invitedProject['title']} </a></li>";
 		}
 	} else {
 		echo "<p>Geen projecten</p>";

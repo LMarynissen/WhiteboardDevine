@@ -122,7 +122,9 @@ class UsersController extends Controller {
 		}	
 
 		if(!empty($errors)){
-			$_SESSION["error"] = "the person could not be invited";
+			$_SESSION["error"] = "The person could not be invited" ;
+			$this->redirect("index.php?page=detail&id=".$_GET['id']);
+
 		}
 		$this->set('errors', $errors);
 	}

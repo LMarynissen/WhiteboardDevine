@@ -12,7 +12,7 @@
   <?php if (!empty($items)) {
 
 	} else {
-		echo "<p>No stickies placed yet</p>";
+		echo "<span><p>No stickies placed yet</p></span>";
     } ?>
 
   <section class="postitform">
@@ -103,7 +103,7 @@
           if (!empty($inviteds)) {
 
           foreach ($inviteds as $invite ) {
-            echo "<li>{$invite['email']}<a href=\"index.php?page=deleteUser&amp;user_id={$invite["user_id"]}&amp;project_id={$project["id"]}\">delete</a></li>";
+            echo "<li>{$invite['email']}<a class=\"userDeleteButton\" href=\"index.php?page=deleteUser&amp;user_id={$invite["user_id"]}&amp;project_id={$project["id"]}\">x</a></li>";
           }
         }else{
             echo "<li>Je hebt nog niemand uitgenodigd voor dit project</li>"; 
