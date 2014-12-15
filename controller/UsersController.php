@@ -96,6 +96,7 @@ class UsersController extends Controller {
 
 			$user = $this->userDAO->selectByEmail($_POST["email"]);
 			$project_id = $_GET["id"];
+			$alreadyInvited = $this->projectDAO->selectInvitedByProjectAndUserId($project_id, $user['id']);
 
 			if(empty($user)){
 				$errors['user'] = 'Please enter a valid email address';
@@ -103,6 +104,11 @@ class UsersController extends Controller {
 
 			if(empty($project_id)){
 				$errors['project_id'] = 'OH GOD, SOMETHING WENT WRONG! SAVE YOURSELF!';
+			}
+
+			//check if user is already invited
+			if(!empty($alreadyInvited)){
+				$errors['user'] = 'Deze persoon is alreeds ge-invite';
 			}
 
 			if(empty($errors)){
