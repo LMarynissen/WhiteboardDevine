@@ -38,25 +38,17 @@ class ProjectsController extends Controller {
 		if(!empty($_GET["id"])){
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
-				for( $i = 0; $i < sizeof($items); $i++ ){
-					$itemCreators[$i] = $this->projectDAO->selectUserByItemId($items[$i]['id']);
+			for( $i = 0; $i < sizeof($items); $i++ ){
+				$itemCreators[$i] = $this->projectDAO->selectUserByItemId($items[$i]['id']);
+			}
 
-				}
-
-				foreach ($items as $item) {
-
-					}
 			$invited = $this->projectDAO->selectInvitedByProjectId($_GET["id"]);
 			$inviteds = $this->projectDAO->selectInvitedPeopleByProject($_GET["id"]);
 
 			//Check if user is allowed to view the whiteboard
-
 			if(!empty($_SESSION["user"])){
 				//If person is on the invited list for this whiteboard
-	
-
 				foreach ($invited as $invite) {
-
 					if($_SESSION["user"]["id"] == $invite['user_id']){
 						$access = true;
 					}
@@ -68,12 +60,12 @@ class ProjectsController extends Controller {
 				}
 
 				if(!$access){
-					$_SESSION["info"] = "You do not have access to this whiteboard";
+					$_SESSION["info"] = "Je hebt geen toegang tot deze whiteboard";
 					$this->redirect("index.php");
 				}
 
 			}else{
-				$_SESSION["info"] = "You need to be logged in to view whiteboards";
+				$_SESSION["info"] = "Je moet ingelogd zijn om whiteboards te kunnen bekijken";
 				$this->redirect("index.php");
 			}
 			
@@ -91,7 +83,6 @@ class ProjectsController extends Controller {
 		if(empty($project)){
 			$this->redirect("index.php");
 		}
-		//$this->set("project",$project);
 	}
 
 	public function add(){
@@ -108,13 +99,13 @@ class ProjectsController extends Controller {
 						"title"=>$title,
 						"description"=>$description
 					));
-					$_SESSION["info"] = "Project created successfully";
+					$_SESSION["info"] = "Project successvol aangemaakt";
 					$this->redirect("index.php");
 			}
 		}	
 
 		if(!empty($errors)){
-			$_SESSION["error"] = "the project could not be created";
+			$_SESSION["error"] = "Het project kon niet aangemaakt worden";
 		}
 		$this->set('errors', $errors);
 	}
@@ -122,8 +113,6 @@ class ProjectsController extends Controller {
 	public function addItem(){
 		$errors = array();
 		$size = array();
-
-		
 
 		if($_FILES['content']['error'] == 0){
 
@@ -146,96 +135,81 @@ class ProjectsController extends Controller {
 						if($size[0] < 200 || $size[1] < 200){
 							$errors["content"] = "the image should be at least 200x200";
 						}
-					}
-					
-				}else{
-
-
+					}		
 				}
 
 				$contentlink = preg_replace("/\\.[^.\\s]{3,4}$/", "", $_FILES["content"]["name"]);
 				$extension = explode($contentlink.".", $_FILES["content"]["name"])[1];
-
 				if(!empty($_FILES["content"]["error"])){
 					$errors["content"] = "the content could not be uploaded";
 				}
-
-			
 		}
 			
+		$project_id = $_GET["id"];
+		$title = $_POST["title"];
+		if(empty($title)){
+			$title = " ";
+		}
+		$description = $_POST["description"];
+		if(empty($description)){
+			$description = " ";
+		}
+		$color = $_POST["color"];
 
-				$project_id = $_GET["id"];
-				$title = $_POST["title"];
-				if(empty($title)){
-					$title = " ";
-				}
-				$description = $_POST["description"];
-				if(empty($description)){
-					$description = " ";
-				}
-				$color = $_POST["color"];
-
-				if(empty($contentlink)){
-					$contentlink = " ";
-				}
+		if(empty($contentlink)){
+			$contentlink = " ";
+		}
 				
-				if(empty($extension)){
-					$extension = " ";
-				}
+		if(empty($extension)){
+			$extension = " ";
+		}
 
-				$this->projectDAO->insertItem(array(
-					"user_id"=>$_SESSION["user"]["id"],
-					"contentlink"=>$contentlink,
-					"extension"=>$extension,
-					"posX"=>100,
-					"posY"=>100,
-					"title"=>$title,
-					"description"=>$description,
-					"project_id"=>$_GET["id"],
-					"datum"=>date("Y-m-d h:i:s"),
-					"color"=>$color
-				));
+		$this->projectDAO->insertItem(array(
+			"user_id"=>$_SESSION["user"]["id"],
+			"contentlink"=>$contentlink,
+			"extension"=>$extension,
+			"posX"=>100,
+			"posY"=>100,
+			"title"=>$title,
+			"description"=>$description,
+			"project_id"=>$_GET["id"],
+			"datum"=>date("Y-m-d h:i:s"),
+			"color"=>$color
+		));
 
+		if($_FILES['content']['error'] == 0){
+			if($isAnImage){
+				$imageresize = new EventViva\ImageResize($_FILES["content"]["tmp_name"]);
+				$imageresize->resizeToHeight(600);
+				$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
+				$imageresize->resizeToHeight(120);
+				$imageresize->crop(180,120);
+				$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);	
+			}else{
+				//VIDEO UPLOAD SHIZZLES
+				$target = "uploads/";
+				$target = $target . basename( $_FILES['content']['name']) ;
+				move_uploaded_file($_FILES['content']['tmp_name'], $target);
+			}
 
-				if($_FILES['content']['error'] == 0){
-					if($isAnImage){
-						$imageresize = new EventViva\ImageResize($_FILES["content"]["tmp_name"]);
-						$imageresize->resizeToHeight(600);
-						//$imageresize->crop(600,600);
-						$imageresize->save(WWW_ROOT."uploads".DS.$contentlink.".".$extension);
-						$imageresize->resizeToHeight(120);
-						$imageresize->crop(180,120);
-						$imageresize->save(WWW_ROOT."uploads".DS.$contentlink."_th.".$extension);	
-					}else{
-						//VIDEO UPLOAD SHIZZLES
-						$target = "uploads/";
-						$target = $target . basename( $_FILES['content']['name']) ;
-						move_uploaded_file($_FILES['content']['tmp_name'], $target);
-					}
-
-				}
-				$this->redirect("index.php?page=detail&id=".$_GET["id"]);
-				$_SESSION["info"] = "The sticky note was uploaded";
+		}
+		$this->redirect("index.php?page=detail&id=".$_GET["id"]);
+		$_SESSION["info"] = "The sticky note was uploaded";
 		
-
 		if(!empty($errors)){
 			$_SESSION["error"] = "the sticky note could not be uploaded";
-
 		}
 
 		$this->set('errors', $errors);
-
-		print_r($errors['image']);
-		die();
 	}
 
 	public function delete(){
 		$errors = array();
 
 		if(empty($errors)){
-				$this->projectDAO->delete($_GET["id"]);
-				$_SESSION["info"] = "Project deleted successfully";
-				$this->redirect("index.php");
+			$this->projectDAO->delete($_GET["id"]);
+			$_SESSION["info"] = "Project deleted successfully";
+			$this->redirect("index.php");
 		}
 
 		if(!empty($errors)){
@@ -248,9 +222,9 @@ class ProjectsController extends Controller {
 		$errors = array();
 
 		if(empty($errors)){
-				$this->projectDAO->deleteItem($_POST["id"]);
-				$_SESSION["info"] = "Item deleted successfully";
-				$this->redirect("index.php");
+			$this->projectDAO->deleteItem($_POST["id"]);
+			$_SESSION["info"] = "Item deleted successfully";
+			$this->redirect("index.php");
 		}
 
 		if(!empty($errors)){
@@ -274,8 +248,6 @@ class ProjectsController extends Controller {
 						"posX"=>$x,
 						"posY"=>$y
 					));
-					//$_SESSION["info"] = "Project created successfully";
-					//$this->redirect("index.php?page=detail&id=");
 			}
 		}	
 

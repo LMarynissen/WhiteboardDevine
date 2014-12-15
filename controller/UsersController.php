@@ -91,7 +91,6 @@ class UsersController extends Controller {
 
 	public function invitePerson(){
 		$errors = array();
-
 		if(!empty($_POST)){
 
 			$user = $this->userDAO->selectByEmail($_POST["email"]);
@@ -112,12 +111,12 @@ class UsersController extends Controller {
 			}
 
 			if(empty($errors)){
-					$this->userDAO->invitePerson(array(
-						"project_id"=>$project_id,
-						"user_id"=>$user['id']
-					));
-					$_SESSION["info"] = "Invite successvol";
-					$this->redirect("index.php?page=detail&id=".$_GET['id']);
+				$this->userDAO->invitePerson(array(
+					"project_id"=>$project_id,
+					"user_id"=>$user['id']
+				));
+				$_SESSION["info"] = "Invite successvol";
+				$this->redirect("index.php?page=detail&id=".$_GET['id']);
 			}
 		}	
 
@@ -131,9 +130,9 @@ class UsersController extends Controller {
 		$errors = array();
 
 		if(empty($errors)){
-				$this->userDAO->deleteUser($_GET["user_id"], $_GET["project_id"]);
-				$_SESSION["info"] = "Person deleted successfully. You monster.";
-				$this->redirect("index.php?page=detail&id=".$_GET['project_id']);
+			$this->userDAO->deleteUser($_GET["user_id"], $_GET["project_id"]);
+			$_SESSION["info"] = "Person deleted successfully. You monster.";
+			$this->redirect("index.php?page=detail&id=".$_GET['project_id']);
 
 		}
 

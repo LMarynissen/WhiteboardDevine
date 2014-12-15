@@ -22,9 +22,6 @@
              document.body.appendChild(sticky.el);
           }
 
-            //$('.stickyContent').addEventListener("click", clicked);
-            //console.log($('.stickyContent'));
-
 
       }
 

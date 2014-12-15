@@ -126,8 +126,6 @@ class ProjectDAO extends DAO {
 	        $stmt->bindValue(':datum', $data['datum']);
 	        $stmt->bindValue(':color', $data['color']);
 			if($stmt->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
 			}
 		}
 		return false;
@@ -150,8 +148,6 @@ class ProjectDAO extends DAO {
 	        $stmt->bindValue(':datum', $data['datum']);
 	        $stmt->bindValue(':color', $data['color']);
 			if($stmt->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
 			}
 		}
 		return false;
@@ -159,60 +155,47 @@ class ProjectDAO extends DAO {
 
 	public function delete($id) {
 
-			$sql = " DELETE FROM projects
-					 WHERE id = :id";
-	        $stmt = $this->pdo->prepare($sql);
-	        $stmt->bindValue(':id', $id);
-			if($stmt->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
-			}
+		$sql = " DELETE FROM projects
+				 WHERE id = :id";
+	    $stmt = $this->pdo->prepare($sql);
+	    $stmt->bindValue(':id', $id);
+		if($stmt->execute()) {
+		}
 	
-			$sql2 = " DELETE FROM items
-					 WHERE project_id = :project_id";
-	        $stmt2 = $this->pdo->prepare($sql2);
-	        $stmt2->bindValue(':project_id', $id);
-			if($stmt2->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
-			}
+		$sql2 = " DELETE FROM items
+		WHERE project_id = :project_id";
+	    $stmt2 = $this->pdo->prepare($sql2);
+	    $stmt2->bindValue(':project_id', $id);
+		if($stmt2->execute()) {
+		}
 		
 		return false;
 	}
 
 	public function deleteItem($id) {
 
-			$sql = " DELETE FROM items
-					 WHERE id = :id";
-	        $stmt = $this->pdo->prepare($sql);
-	        $stmt->bindValue(':id', $id);
-			if($stmt->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
-			}
+		$sql = " DELETE FROM items
+			 	 WHERE id = :id";
+	    $stmt = $this->pdo->prepare($sql);
+	    $stmt->bindValue(':id', $id);
+		if($stmt->execute()) {
+		}
 		
 		return false;
 	}
 
 	public function moveUpdate($data) {
-
 		$id = $data['id'];
 		$posX = $data['posX'];
 		$posY = $data['posY'];
-
 		$sql = " UPDATE items SET posX ='$posX', posY ='$posY'  WHERE id = $id";
-		
-		 $stmt = $this->pdo->prepare($sql);
-	        $stmt->bindValue(':id', $id);
-			if($stmt->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
-			}
+		$stmt = $this->pdo->prepare($sql);
+	    $stmt->bindValue(':id', $id);
+		if($stmt->execute()) {
+		}
 		
 		return false;
 	}
-
-
 
 	public function getValidationErrors($data) {
 		$errors = array();

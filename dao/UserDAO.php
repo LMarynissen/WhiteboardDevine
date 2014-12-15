@@ -59,8 +59,7 @@ class UserDAO extends DAO {
 	}
 
 	public function invitePerson($data) {
-		//$errors = $this->getValidationErrors($data);
-		if(empty($errors)) {
+
 			$sql = "INSERT INTO `invites` (`project_id`, `user_id`) VALUES (:project_id, :user_id)";
 	        $stmt = $this->pdo->prepare($sql);
 	        $stmt->bindValue(':project_id', $data['project_id']);
@@ -69,7 +68,7 @@ class UserDAO extends DAO {
 				$insertedId = $this->pdo->lastInsertId();
 				return $this->selectById($insertedId);
 			}
-		}
+		
 		return false;
 	}
 
@@ -82,8 +81,6 @@ class UserDAO extends DAO {
 	        $stmt->bindValue(':user_id', $user_id);
 	        $stmt->bindValue(':project_id', $project_id);
 			if($stmt->execute()) {
-			//	$insertedId = $this->pdo->lastInsertId();
-			//	return $this->selectById($insertedId);
 			}
 		
 		return false;
