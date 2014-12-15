@@ -42,6 +42,7 @@ class ProjectsController extends Controller {
 
 					}
 			$invited = $this->projectDAO->selectInvitedByProjectId($_GET["id"]);
+			$invitedNames = $this->projectDAO->selectInvitedPeopleByProject($_GET["id"]);
 
 			//Check if user is allowed to view the whiteboard
 
@@ -81,6 +82,7 @@ class ProjectsController extends Controller {
 			$this->set("items",$items);
 			$this->set("itemCreators",$itemCreators);
 			$this->set("access",$access);
+			$this->set("invitedNames",$invitedNames);
 		} else {
 			$this->redirect("index.php");
 		}
