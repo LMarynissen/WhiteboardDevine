@@ -30,6 +30,11 @@ class ProjectsController extends Controller {
 		$invited = false;
 		$access = false;
 
+		//Find email of creator of whiteboard
+		$creatorEmail = false;
+		$creatorEmail = $this->projectDAO->selectCreatorByProjectId($_GET["id"])[0]['email'];
+		$this->set("creatorEmail",$creatorEmail);
+
 		if(!empty($_GET["id"])){
 			$project = $this->projectDAO->selectById($_GET["id"]);
 			$items = $this->projectDAO->selectItemsByProjectId($_GET["id"]);
@@ -51,10 +56,7 @@ class ProjectsController extends Controller {
 	
 
 				foreach ($invited as $invite) {
-				//	print_r($invited);
-				//	print_r("current user id:".$_SESSION["user"]["id"]);
-				//	print_r("project owner:".$project["user_id"]);
-				//	die();
+
 					if($_SESSION["user"]["id"] == $invite['user_id']){
 						$access = true;
 					}
@@ -107,7 +109,7 @@ class ProjectsController extends Controller {
 						"description"=>$description
 					));
 					$_SESSION["info"] = "Project created successfully";
-					$this->redirect("index.php?page=detail&id=");
+					$this->redirect("index.php");
 			}
 		}	
 

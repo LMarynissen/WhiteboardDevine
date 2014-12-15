@@ -13,13 +13,17 @@
                     <li class= "schreef"><a href="index.php">Whiteboard</a></li>
                     <div class = "line"></div>
                     <?php if (empty($_SESSION["user"])) { ?>
+                    <ul class= "right-regi">
                     <li class ="sans" ><a href="index.php?page=login">login</a></li>
                     <li class = "sans" ><a href="index.php?page=register">Register</a></li>
-                    <?php } else { ?>
-
-                    <p class="sans">Signed in as <?php echo $_SESSION['user']['email'];?> - <a href="index.php?page=logout">Logout</a></p>
-                    <?php } ?>
                     </ul>
+                    <?php } else { ?>
+                </ul>
+                <ul class = "right">
+                    <li class="sans"><p>Signed in as <?php echo $_SESSION['user']['email'];?></p> 
+                    - <a href="index.php?page=logout">Logout</a></li>
+                    <?php } ?>
+                </ul> 
             </div>
         </nav>
 

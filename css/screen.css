@@ -37,12 +37,23 @@ body{
 
 }
 
+h2{
+	margin-top: 20px;
+}
+h3, h4{
+	margin-left: 10px;
+}
+
+h4{
+	margin-bottom: 10px;
+}
+
 /*------------ NAVIGATIE -------------- */
 
 .container{
 	width: 900px;
 	margin: 0 auto;
-
+	margin-left: 140px;
 }
 
 .schreef{
@@ -54,6 +65,7 @@ body{
 	font-family: 'code';
 	color: #139b8b;
 }
+
 
 nav ul .schreef a{
 	font-size: 7.2em;
@@ -68,33 +80,36 @@ nav ul .schreef {
 }
 
 nav ul .sans {
-	float: right;
 	margin-top: -30px;
 }
 
 nav ul li{
-list-style: none;
+	list-style: none;
 }
 
-nav ul .sans a{
-	font-size: 3em;
+nav ul .sans p{
+	font-size: 2em;
+	margin-right: 10px;
+	float: left;
+}
+
+ nav ul .sans a{
+ 	font-size: 2em;
+ }
+
+.right{
+	float: right;
+}
+
+.right-regi{
+}
+.right-regi a{
+	float: right;
 	margin-right: 20px;
 }
 
 nav ul .sans a:visited{
   color: #139b8b;
-}
-
-nav ul p{
-	margin-top: -30px;
-	margin-right: 20px;
-	float: right;
-}
-
-
-
-nav ul p > a{
-	font-size: 1em;
 }
 
 .line{
@@ -131,28 +146,21 @@ margin-top: 50px;
 	position:absolute;
 	display: block;
     width:200px;
-    height:150px;
     color: white;
     z-index: 1;
+    overflow: visible;
 
-    /* Disable text selectie */	
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .stickyNoteVideo{
 	position:absolute;
 	display: block;
-    width:240px;
-    height:140px;
+    width: 250px;
     color: white;
     z-index: 1;
-}
+    overflow: visible;
 
+}
 
 .project-view{
 	width: 200px;
@@ -170,45 +178,55 @@ margin-top: 50px;
     width:180px;
     height:120px;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 4px;
+    overflow: visible;
+
 }
 
 .stickyContentVideo{
 	width:250px;
     height:140px;
     margin: 0 auto;
+    margin-bottom: 4px;
 }
 
 .stickyDate{
-	color: black;
+	color: white;
+	text-align: center;
 	margin-top:3px;
 }
 
 .stickyCreator{
-	color: black;
+	color: white;
+	text-align: center;
 
 }
 
 .stickyDeleteButton{
-	width:50px;
-	height:10px;
+	font-weight: bold;
+	font-size: 2em;
 	color:black;
+	padding: 5px;
+	margin-left: -20px;
 }
 
 .postitform{
-	float: right;
-
 	color: white;
 	background-color: #139b8b;
-	padding-top: 100px;
-	padding-bottom: 90px;
+	padding-bottom: 220px;
 	padding-left: 50px;
+	margin-top: -82px;
+	z-index: 99;
+	position: fixed;
+	right: 0%;
 }
 
 .postitform  h1{
 	font-size: 2em;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	margin-left: 10px;
+	margin-top: 30px;
 }
 
 .postitform > form input[type=file]{
@@ -216,12 +234,50 @@ margin-top: 50px;
 
 }
 
-.postitform label[for=addTitle]{
-	margin-top: 10px;
-	
+.postitform label[for=addTitle], label[for=addImage], label[for=addEmail]{
+	font-size: 1.5em;
 }
 
+input[type="text"], textarea, input[type="email"]{
+	width: 200px;
+	margin-bottom: 5px;
+}
 
+input[type="email"]{
+	margin-bottom: 0px;
+}
+
+textarea{
+	height: 50px;
+}
+
+input[type="color"]{
+	margin-bottom: 10px;
+}
+
+.col-sm input[type=submit], .deleteProjectButton, .addProject{
+	cursor:pointer;
+	background-color: #008576;
+	margin-top: 10px;
+	padding: 10px;
+	color: white;
+	border-radius: 2px;
+	border: 1px solid white;
+}
+
+.addProject{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.addProjectDiv{
+
+}
+
+.deleteProject{
+	font-size: 1.5em;
+	margin-top: 10px;
+}
 
 /*------------ REGISTER -------------- */
 
@@ -235,6 +291,7 @@ margin-top: 50px;
 
 #content > header > h1{
 	font-size: 3em;
+	margin-bottom: 20px;
 }
 
 #content > form label{
@@ -266,7 +323,7 @@ margin-top: 50px;
 	font-size: 2em;
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 .alert-danger{
@@ -278,6 +335,5 @@ margin-top: 50px;
 .alert-success{
 	color: #3fad75;
 	border: 1px solid #3fad75 ;
-
 }
 
