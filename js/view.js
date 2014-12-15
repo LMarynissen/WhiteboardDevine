@@ -75,8 +75,6 @@
           this.el.appendChild(aThumbnail);
         }
 
-
-
         var datumEl = document.createElement("p");   
         datumEl.classList.add('stickyDate');    
         var t = document.createTextNode("aangemaakt op " + datum);       
@@ -127,13 +125,11 @@
 
             this.el.style.left = (event.pageX - this.offsetX) + 'px';
             this.el.style.top = (event.pageY - this.offsetY )+ 'px';
-            
-  
           }
 
           Sticky.prototype.mouseUpHandler = function (event) {
             //upload sticky pos to database
-             
+
               $.ajax({
                 type: "POST",
                 url: 'index.php?page=moveItem',

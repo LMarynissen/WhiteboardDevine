@@ -7,9 +7,11 @@
 
 	<?php if (!empty($projects) || !empty($invitedProjects)) {
 		foreach ($projects as $project ) {
+			echo "<h2>Eigen projecten</h2>";
 	    	echo "<a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a>";
 		}
 		foreach ($invitedProjects as $invitedProject ) {
+			echo "<h2>Samenwerkingen</h2>";
 	    	echo "<a href=\"index.php?page=detail&amp;id={$invitedProject['project_id']}\"> {$invitedProject['title']} </a>";
 		}
 	} else {
