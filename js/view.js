@@ -21,6 +21,11 @@
              );
              document.body.appendChild(sticky.el);
           }
+
+            //$('.stickyContent').addEventListener("click", clicked);
+            //console.log($('.stickyContent'));
+
+
       }
 
       function Sticky(color, contentlink, datum, description, extension, id, posX, posY, project_id, title, user_id, user) {

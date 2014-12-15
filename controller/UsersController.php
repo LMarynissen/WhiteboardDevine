@@ -99,7 +99,7 @@ class UsersController extends Controller {
 			$alreadyInvited = $this->projectDAO->selectInvitedByProjectAndUserId($project_id, $user['id']);
 
 			if(empty($user)){
-				$errors['user'] = 'Please enter a valid email address';
+				$errors['user'] = 'Vul aub een geldig email-adres in';
 			}
 
 			if(empty($project_id)){
@@ -116,13 +116,13 @@ class UsersController extends Controller {
 						"project_id"=>$project_id,
 						"user_id"=>$user['id']
 					));
-					//$_SESSION["info"] = "Person invited successfully";
+					$_SESSION["info"] = "Invite successvol";
 					$this->redirect("index.php?page=detail&id=".$_GET['id']);
 			}
 		}	
 
 		if(!empty($errors)){
-			$_SESSION["error"] = "the person could not be invited";
+			$_SESSION["error"] = "De persoon kon niet toegevoegd worden";
 		}
 		$this->set('errors', $errors);
 	}
