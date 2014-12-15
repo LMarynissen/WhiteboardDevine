@@ -9,7 +9,6 @@ var deleteButtons = document.querySelectorAll(".stickyDeleteButton");
 
 
 function sendForm(e){
-
     //Delete from database
     $.ajax({
         type: "POST",

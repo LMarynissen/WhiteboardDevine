@@ -109,6 +109,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10"><input type="submit" value="Invite" class="btn btn-default"></div>
         </div>
+        
     </form>
      <?php 
   echo "<a href=\"index.php?page=delete&amp;id={$project["id"]}\" >Delete this project</a>";
