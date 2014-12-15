@@ -121,7 +121,11 @@ class UsersController extends Controller {
 		}	
 
 		if(!empty($errors)){
+
 			$_SESSION["error"] = "De persoon kon niet toegevoegd worden";
+			$this->redirect("index.php?page=detail&id=".$_GET['id']);
+
+
 		}
 		$this->set('errors', $errors);
 	}

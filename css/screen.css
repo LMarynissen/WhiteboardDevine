@@ -48,6 +48,10 @@ h4{
 	margin-bottom: 10px;
 }
 
+span{
+	display: none;
+}
+
 /*------------ NAVIGATIE -------------- */
 
 .container{
@@ -137,6 +141,12 @@ margin-top: 50px;
 }
 
 .projectWindow{
+}
+
+.invited > a {
+	color: black;
+	margin-bottom: 5px;
+	font-size: 1.2em;
 }
 
 .stickyNote{
@@ -266,6 +276,7 @@ input[type="color"]{
 .addProject{
 	padding-left: 30px;
 	padding-right: 30px;
+	font-size: 1.5em;
 }
 
 .addProjectDiv{
@@ -275,6 +286,13 @@ input[type="color"]{
 .deleteProject{
 	font-size: 1.5em;
 	margin-top: 10px;
+}
+
+.userDeleteButton{
+	color: black;
+	font-size: 1.3em;
+	margin-left: 5px;
+
 }
 
 /*------------ REGISTER -------------- */
