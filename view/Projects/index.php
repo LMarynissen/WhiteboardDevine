@@ -1,5 +1,8 @@
 <section id="content">
-	<header><h1>Your Projects</h1></header>
+
+    <?php if (!empty($_SESSION["user"])) {
+	echo"<header><h1>Your Projects</h1></header>";
+     ?>
 
 
 	<?php if (!empty($projects) || !empty($invitedProjects)) {
@@ -10,8 +13,14 @@
 	    	echo "<a href=\"index.php?page=detail&amp;id={$invitedProject['project_id']}\"> {$invitedProject['title']} </a>";
 		}
 	} else {
-		echo "<p>No projects</p>";
-    } ?>
+		echo "<p>Geen projecten</p>";
+    }
+
+    }else{
+    	echo "<p>Log in om projecten te maken</p>";
+    } 
+    ?>
+
     
     <?php if (!empty($_SESSION["user"])) {
     	echo"<li><a href=\"index.php?page=add\">Add a project</a></li>";

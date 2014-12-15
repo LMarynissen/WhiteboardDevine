@@ -144,6 +144,16 @@ margin-top: 50px;
     user-select: none;
 }
 
+.stickyNoteVideo{
+	position:absolute;
+	display: block;
+    width:240px;
+    height:140px;
+    color: white;
+    z-index: 1;
+}
+
+
 .project-view{
 	width: 200px;
 	margin: 0 auto;
@@ -153,11 +163,19 @@ margin-top: 50px;
 
 .project-view h1{
 	font-size: 3em;
+	z-index: 3;
 }
 
 .stickyContent{
     width:180px;
     height:120px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.stickyContentVideo{
+	width:250px;
+    height:140px;
     margin: 0 auto;
 }
 

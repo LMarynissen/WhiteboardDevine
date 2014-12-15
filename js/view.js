@@ -27,7 +27,11 @@
            
         //aanmaken HTML-element
         this.el = document.createElement('div');
-        this.el.classList.add('stickyNote');
+        if(extension == 'mp4'){
+          this.el.classList.add('stickyNoteVideo');
+        }else{
+          this.el.classList.add('stickyNote');
+        }
         this.el.classList.add('sticky'+ id);
         this.el.setAttribute('itemId', id); 
         var titleEl = document.createElement("h3");      
@@ -43,9 +47,9 @@
         if(extension == 'mp4'){
 
           var thumbnail = document.createElement("video");   
-          thumbnail.classList.add('stickyContent');
-          thumbnail.setAttribute('width',180);
-          thumbnail.setAttribute('height',120);
+          thumbnail.classList.add('stickyContentVideo');
+          thumbnail.setAttribute('width',230);
+          thumbnail.setAttribute('height',140);
           thumbnail.setAttribute('controls','');
           if(contentlink != " "){
               var source = document.createElement("source"); 
