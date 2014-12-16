@@ -17,8 +17,8 @@
 		foreach ($projects as $project ) {
 	    	echo "<li class=\"invited\"><a href=\"index.php?page=detail&amp;id={$project['id']}\"> {$project['title']} </a></li>";
 		}
+		echo "<h2>Samenwerkingen</h2>";
 		foreach ($invitedProjects as $invitedProject ) {
-			echo "<h2>Samenwerkingen</h2>";
 	    	echo "<li class=\"invited\"><a href=\"index.php?page=detail&amp;id={$invitedProject['project_id']}\"> {$invitedProject['title']} </a></li>";
 		}
 	} else {
@@ -32,7 +32,5 @@
     } 
     ?>
     </article>
-
-  
-
+    
 </section>

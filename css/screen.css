@@ -351,9 +351,5 @@ input[type="color"]{
 .alert-success{
 	color: #3fad75;
 	border: 1px solid #3fad75 ;
-	position:fixed;
-	margin: 0 auto;
-	width:500px;
-	height:25px;
 }
 

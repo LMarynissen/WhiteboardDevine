@@ -98,18 +98,14 @@
         creatorEl.appendChild(t);                     
         this.el.appendChild(creatorEl);
 
-                 
-
         this.el.style.left = posX + "px";
         this.el.style.top = posY + "px";
-
         this.el.style.backgroundColor = color;
           
         //handlers binden
         this._mouseDownHandler = this.mouseDownHandler.bind(this);
         this._mouseMoveHandler = this.mouseMoveHandler.bind(this);
         this._mouseUpHandler = this.mouseUpHandler.bind(this);
-
         this.el.addEventListener('mousedown', this._mouseDownHandler);
       }
 
@@ -127,7 +123,6 @@
 
           Sticky.prototype.mouseMoveHandler = function (event) {
             //move the sticky
-
             this.el.style.left = (event.pageX - this.offsetX) + 'px';
             this.el.style.top = (event.pageY - this.offsetY )+ 'px';
           }

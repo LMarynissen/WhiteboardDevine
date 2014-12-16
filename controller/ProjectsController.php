@@ -93,6 +93,14 @@ class ProjectsController extends Controller {
 			$title = $_POST["title"];
 			$description = $_POST["description"];
 
+			if(empty($title)){
+				$errors["title"] = "Vul een titel in aub";
+			}
+
+			if(empty($description)){
+				$errors["description"] = "Vul een description in aub";
+			}
+
 			if(empty($errors)){
 					$this->projectDAO->insert(array(
 						"user_id"=>$_SESSION["user"]["id"],
